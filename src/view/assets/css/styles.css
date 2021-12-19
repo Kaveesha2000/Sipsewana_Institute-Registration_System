@@ -1,0 +1,34 @@
+.saveBtn{
+    -fx-background-color: #007f66;
+    -fx-background-radius: 40px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #fff;
+    -fx-cursor: hand;
+}
+.saveBtn:hover{
+    -fx-background-color: #505e6b;
+}
+.updateBtn{
+    -fx-background-color: #ed872d;
+    -fx-background-radius: 40px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #fff;
+    -fx-cursor: hand;
+}
+.updateBtn:hover{
+    -fx-background-color: #505e6b;
+}
+.deleteBtn{
+    -fx-background-color: #ea3c53;
+    -fx-background-radius: 40px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #fff;
+    -fx-cursor: hand;
+}
+.deleteBtn:hover{
+    -fx-background-color: #505e6b;
+}
+.textType{
+    -fx-font-size: 12;
+    -fx-font-weight: bold;
+}
