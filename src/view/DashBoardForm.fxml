@@ -49,7 +49,7 @@
             </ImageView>
          </children>
       </AnchorPane>
-      <AnchorPane layoutX="356.0" layoutY="119.0" prefHeight="125.0" prefWidth="250.0" style="-fx-background-color: #8695b1;" styleClass="dashBoardDetail-pane" stylesheets="@assets/css/styles.css">
+      <AnchorPane layoutX="356.0" layoutY="149.0" prefHeight="125.0" prefWidth="250.0" style="-fx-background-color: #8695b1;" styleClass="dashBoardDetail-pane" stylesheets="@assets/css/styles.css">
          <children>
             <Label layoutY="108.0" prefHeight="17.0" prefWidth="250.0" style="-fx-background-color: #0b194d;" styleClass="dashBoardDetail-lable" stylesheets="@assets/css/styles.css" text="     No Of Students" textFill="WHITE">
                <font>
@@ -69,7 +69,7 @@
             </Label>
          </children>
       </AnchorPane>
-      <AnchorPane layoutX="353.0" layoutY="284.0" prefHeight="125.0" prefWidth="250.0" style="-fx-background-color: #8695b1;" styleClass="dashBoardDetail-pane" stylesheets="@assets/css/styles.css">
+      <AnchorPane layoutX="353.0" layoutY="314.0" prefHeight="125.0" prefWidth="250.0" style="-fx-background-color: #8695b1;" styleClass="dashBoardDetail-pane" stylesheets="@assets/css/styles.css">
          <children>
             <Label layoutY="108.0" prefHeight="17.0" prefWidth="250.0" style="-fx-background-color: #0b194d;" styleClass="dashBoardDetail-pane" stylesheets="@assets/css/styles.css" text="     No Of Courses" textFill="WHITE">
                <font>
@@ -89,5 +89,15 @@
             </Label>
          </children>
       </AnchorPane>
+      <Label alignment="CENTER" layoutX="546.0" layoutY="63.0" prefHeight="17.0" prefWidth="108.0" text="21-12-2021">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+      <Label alignment="CENTER" layoutX="546.0" layoutY="87.0" prefHeight="17.0" prefWidth="108.0" text="06:05:22 AM">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>
