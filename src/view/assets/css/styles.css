@@ -50,3 +50,8 @@
     -fx-border-radius: 15;
     -fx-background-radius: 15;
 }
+.combo{
+    -fx-font-size: 12;
+    -fx-font-weight: bold;
+    -fx-font-fill: rgb(54, 49, 49);
+}
