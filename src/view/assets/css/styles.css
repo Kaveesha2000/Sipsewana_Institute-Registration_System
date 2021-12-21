@@ -32,3 +32,11 @@
     -fx-font-size: 12;
     -fx-font-weight: bold;
 }
+.dashBoardDetail-pane{
+    -fx-border-radius: 15;
+    -fx-background-radius: 15;
+}
+.dashBoardDetail-lable{
+    -fx-border-radius: 15;
+    -fx-background-radius: 15;
+}
