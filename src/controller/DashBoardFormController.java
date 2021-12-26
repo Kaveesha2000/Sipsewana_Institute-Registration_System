@@ -17,7 +17,7 @@ public class DashBoardFormController {
     public AnchorPane dashBoardContext;
 
     public void logOutOnAction(ActionEvent actionEvent) {
-
+        System.exit(0);
     }
 
     public void moveToCourseFormOnAction(ActionEvent actionEvent) throws IOException {
