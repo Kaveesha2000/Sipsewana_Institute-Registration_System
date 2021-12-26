@@ -31,4 +31,14 @@ public class CourseDAOImpl implements CourseDAO {
     public ArrayList<Course> getAll() throws SQLException, ClassNotFoundException {
         return null;
     }
+
+    @Override
+    public boolean ifCourseExist(String id) throws SQLException, ClassNotFoundException {
+        return false;
+    }
+
+    @Override
+    public String generateNewID() throws SQLException, ClassNotFoundException {
+        return null;
+    }
 }

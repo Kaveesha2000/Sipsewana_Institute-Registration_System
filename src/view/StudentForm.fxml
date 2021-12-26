@@ -38,20 +38,20 @@
             <Image url="@assets/home.png" />
          </image>
       </ImageView>
-      <JFXTextField fx:id="txtNIC" labelFloat="true" layoutX="31.0" layoutY="129.0" prefHeight="29.0" prefWidth="207.0" promptText="NIC : " styleClass="textType" stylesheets="@assets/css/styles.css">
+      <JFXTextField fx:id="txtNIC" labelFloat="true" layoutX="31.0" layoutY="141.0" prefHeight="29.0" prefWidth="207.0" promptText="NIC : " styleClass="textType" stylesheets="@assets/css/styles.css">
          <font>
             <Font name="Ubuntu" size="13.0" />
          </font>
       </JFXTextField>
-      <JFXTextField fx:id="txtPhoneNo" labelFloat="true" layoutX="247.0" layoutY="129.0" prefHeight="29.0" prefWidth="207.0" promptText="Phone No : " styleClass="textType" stylesheets="@assets/css/styles.css">
+      <JFXTextField fx:id="txtPhoneNo" labelFloat="true" layoutX="247.0" layoutY="141.0" prefHeight="29.0" prefWidth="207.0" promptText="Phone No : " styleClass="textType" stylesheets="@assets/css/styles.css">
          <font>
             <Font name="Ubuntu" size="13.0" />
          </font>
       </JFXTextField>
-      <Button fx:id="btnSave" layoutX="594.0" layoutY="176.0" mnemonicParsing="false" onAction="#saveOnAction" prefHeight="25.0" prefWidth="69.0" styleClass="saveBtn" stylesheets="@assets/css/styles.css" text="Save" />
-      <Button layoutX="515.0" layoutY="176.0" mnemonicParsing="false" onAction="#updateOnAction" prefHeight="25.0" prefWidth="69.0" styleClass="updateBtn" stylesheets="@assets/css/styles.css" text="Update" />
-      <Button layoutX="436.0" layoutY="176.0" mnemonicParsing="false" onAction="#deleteOnAction" prefHeight="25.0" prefWidth="69.0" styleClass="deleteBtn" stylesheets="@assets/css/styles.css" text="Delete" />
-      <TableView fx:id="tblStudent" layoutX="37.0" layoutY="215.0" prefHeight="251.0" prefWidth="628.0">
+      <Button fx:id="btnSave" layoutX="594.0" layoutY="192.0" mnemonicParsing="false" onAction="#saveOnAction" prefHeight="25.0" prefWidth="69.0" styleClass="saveBtn" stylesheets="@assets/css/styles.css" text="Save" />
+      <Button layoutX="515.0" layoutY="192.0" mnemonicParsing="false" onAction="#updateOnAction" prefHeight="25.0" prefWidth="69.0" styleClass="updateBtn" stylesheets="@assets/css/styles.css" text="Update" />
+      <Button layoutX="436.0" layoutY="192.0" mnemonicParsing="false" onAction="#deleteOnAction" prefHeight="25.0" prefWidth="69.0" styleClass="deleteBtn" stylesheets="@assets/css/styles.css" text="Delete" />
+      <TableView fx:id="tblStudent" layoutX="37.0" layoutY="231.0" prefHeight="251.0" prefWidth="628.0">
         <columns>
           <TableColumn fx:id="colRegNo" prefWidth="90.0" text="Regi. No" />
           <TableColumn fx:id="colName" prefWidth="90.0" text="Name" />
@@ -62,9 +62,9 @@
             <TableColumn fx:id="colCourse" prefWidth="90.0" text="Course" />
         </columns>
       </TableView>
-      <JFXComboBox fx:id="cmbCourse" labelFloat="true" layoutX="464.0" layoutY="130.0" prefHeight="28.0" prefWidth="207.0" promptText="Course  :" styleClass="combo" stylesheets="@assets/css/styles.css" />
-      <Button layoutX="358.0" layoutY="178.0" mnemonicParsing="false" onAction="#deleteOnAction" prefHeight="25.0" prefWidth="69.0" styleClass="searchBtn" stylesheets="@assets/css/styles.css" text="Search" />
-      <JFXTextField fx:id="txtSearchBar" layoutX="37.0" layoutY="176.0" prefHeight="25.0" prefWidth="308.0" styleClass="textType" stylesheets="@assets/css/styles.css" />
+      <JFXComboBox fx:id="cmbCourse" labelFloat="true" layoutX="464.0" layoutY="142.0" prefHeight="28.0" prefWidth="207.0" promptText="Course  :" styleClass="combo" stylesheets="@assets/css/styles.css" />
+      <Button layoutX="358.0" layoutY="194.0" mnemonicParsing="false" onAction="#deleteOnAction" prefHeight="25.0" prefWidth="69.0" styleClass="searchBtn" stylesheets="@assets/css/styles.css" text="Search" />
+      <JFXTextField fx:id="txtSearchBar" layoutX="37.0" layoutY="192.0" prefHeight="25.0" prefWidth="308.0" styleClass="textType" stylesheets="@assets/css/styles.css" />
       <Label layoutX="31.0" layoutY="54.0" prefHeight="17.0" prefWidth="77.0" styleClass="textType" stylesheets="@assets/css/styles.css" text="Student ID : ">
          <font>
             <Font size="13.0" />

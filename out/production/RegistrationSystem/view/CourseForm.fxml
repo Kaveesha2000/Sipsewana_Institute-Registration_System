@@ -12,22 +12,22 @@
 
 <AnchorPane fx:id="courseContext" prefHeight="500.0" prefWidth="700.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CourseFormController">
    <children>
-      <JFXTextField labelFloat="true" layoutX="30.0" layoutY="100.0" prefHeight="29.0" prefWidth="207.0" promptText="Course Name : " styleClass="textType" stylesheets="@assets/css/styles.css">
+      <JFXTextField fx:id="txtCName" labelFloat="true" layoutX="30.0" layoutY="100.0" prefHeight="29.0" prefWidth="207.0" promptText="Course Name : " styleClass="textType" stylesheets="@assets/css/styles.css">
          <font>
             <Font name="Ubuntu" size="13.0" />
          </font>
       </JFXTextField>
-      <JFXTextField labelFloat="true" layoutX="464.0" layoutY="100.0" prefHeight="29.0" prefWidth="207.0" promptText="Fee (LKR) : " styleClass="textType" stylesheets="@assets/css/styles.css">
+      <JFXTextField fx:id="txtFee" labelFloat="true" layoutX="464.0" layoutY="100.0" prefHeight="29.0" prefWidth="207.0" promptText="Fee (LKR) : " styleClass="textType" stylesheets="@assets/css/styles.css">
          <font>
             <Font name="Ubuntu" size="13.0" />
          </font>
       </JFXTextField>
-      <JFXTextField labelFloat="true" layoutX="247.0" layoutY="100.0" prefHeight="29.0" prefWidth="207.0" promptText="Duration : " styleClass="textType" stylesheets="@assets/css/styles.css">
+      <JFXTextField fx:id="txtDuration" labelFloat="true" layoutX="247.0" layoutY="100.0" prefHeight="29.0" prefWidth="207.0" promptText="Duration : " styleClass="textType" stylesheets="@assets/css/styles.css">
          <font>
             <Font name="Ubuntu" size="13.0" />
          </font>
       </JFXTextField>
-      <Label alignment="CENTER" layoutX="2.0" layoutY="1.0" prefHeight="45.0" prefWidth="700.0" text="Course Program Registration" textFill="#032668">
+      <Label alignment="CENTER" layoutY="1.0" prefHeight="45.0" prefWidth="700.0" text="Course Program Registration" textFill="#032668">
          <font>
             <Font name="System Bold" size="30.0" />
          </font>
@@ -42,7 +42,7 @@
             <Font size="13.0" />
          </font>
       </Label>
-      <Label layoutX="107.0" layoutY="66.0" prefHeight="17.0" prefWidth="77.0" styleClass="textType" stylesheets="@assets/css/styles.css" text="C001">
+      <Label fx:id="lblCId" layoutX="107.0" layoutY="66.0" prefHeight="17.0" prefWidth="77.0" styleClass="textType" stylesheets="@assets/css/styles.css" text="C001">
          <font>
             <Font size="13.0" />
          </font>
@@ -51,13 +51,13 @@
       <Button layoutX="521.0" layoutY="151.0" mnemonicParsing="false" onAction="#updateOnAction" prefHeight="25.0" prefWidth="69.0" styleClass="updateBtn" stylesheets="@assets/css/styles.css" text="Update" />
       <Button layoutX="442.0" layoutY="151.0" mnemonicParsing="false" onAction="#deleteOnAction" prefHeight="25.0" prefWidth="69.0" styleClass="deleteBtn" stylesheets="@assets/css/styles.css" text="Delete" />
       <Button layoutX="364.0" layoutY="153.0" mnemonicParsing="false" onAction="#searchOnAction" prefHeight="25.0" prefWidth="69.0" styleClass="searchBtn" stylesheets="@assets/css/styles.css" text="Search" />
-      <JFXTextField layoutX="30.0" layoutY="151.0" prefHeight="25.0" prefWidth="318.0" styleClass="textType" stylesheets="@assets/css/styles.css" />
-      <TableView layoutX="51.0" layoutY="198.0" prefHeight="266.0" prefWidth="602.0">
+      <JFXTextField fx:id="txtSearchBar" layoutX="30.0" layoutY="151.0" prefHeight="25.0" prefWidth="318.0" styleClass="textType" stylesheets="@assets/css/styles.css" />
+      <TableView fx:id="tblCourse" layoutX="51.0" layoutY="198.0" prefHeight="266.0" prefWidth="602.0">
          <columns>
-            <TableColumn prefWidth="150.0" text="Course ID" />
-            <TableColumn prefWidth="150.0" text="Name" />
-            <TableColumn prefWidth="150.0" text="Duration" />
-            <TableColumn prefWidth="150.0" text="Fee (LKR)" />
+            <TableColumn fx:id="colCourseId" prefWidth="150.0" text="Course ID" />
+            <TableColumn fx:id="colName" prefWidth="150.0" text="Name" />
+            <TableColumn fx:id="colDuration" prefWidth="150.0" text="Duration" />
+            <TableColumn fx:id="colFee" prefWidth="150.0" text="Fee (LKR)" />
          </columns>
       </TableView>
    </children>

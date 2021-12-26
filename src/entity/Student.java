@@ -1,23 +1,48 @@
 package entity;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import java.util.ArrayList;
+import java.util.List;
+
+@Entity
 public class Student {
+    @Id
     private String SId;
     private String SName;
+    private String Address;
     private String DOB;
     private String NIC;
-    private int TNo;
+    private String TNo;
     private String Course;
+
+    @OneToMany(mappedBy = "student")
+    private
+    List<RegisterDetails> registerDetails=new ArrayList<>();
 
     public Student() {
     }
 
-    public Student(String SId, String SName, String DOB, String NIC, int TNo, String course) {
+    public Student(String SId, String SName, String address, String DOB, String NIC, String TNo, String course) {
         this.setSId(SId);
         this.setSName(SName);
+        setAddress(address);
         this.setDOB(DOB);
         this.setNIC(NIC);
         this.setTNo(TNo);
         setCourse(course);
+    }
+
+    public Student(String SId, String SName, String address, String DOB, String NIC, String TNo, String course, List<RegisterDetails> registerDetails) {
+        this.setSId(SId);
+        this.setSName(SName);
+        setAddress(address);
+        this.setDOB(DOB);
+        this.setNIC(NIC);
+        this.setTNo(TNo);
+        setCourse(course);
+        this.setRegisterDetails(registerDetails);
     }
 
     public String getSId() {
@@ -36,6 +61,14 @@ public class Student {
         this.SName = SName;
     }
 
+    public String getAddress() {
+        return Address;
+    }
+
+    public void setAddress(String address) {
+        Address = address;
+    }
+
     public String getDOB() {
         return DOB;
     }
@@ -52,11 +85,11 @@ public class Student {
         this.NIC = NIC;
     }
 
-    public int getTNo() {
+    public String getTNo() {
         return TNo;
     }
 
-    public void setTNo(int TNo) {
+    public void setTNo(String TNo) {
         this.TNo = TNo;
     }
 
@@ -68,16 +101,11 @@ public class Student {
         Course = course;
     }
 
-    @Override
-    public String toString() {
-        return "Student{" +
-                "SId='" + SId + '\'' +
-                ", SName='" + SName + '\'' +
-                ", DOB='" + DOB + '\'' +
-                ", NIC='" + NIC + '\'' +
-                ", TNo=" + TNo +
-                ", Course='" + Course + '\'' +
-                '}';
+    public List<RegisterDetails> getRegisterDetails() {
+        return registerDetails;
     }
 
+    public void setRegisterDetails(List<RegisterDetails> registerDetails) {
+        this.registerDetails = registerDetails;
+    }
 }

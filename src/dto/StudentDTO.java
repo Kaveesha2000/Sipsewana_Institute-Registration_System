@@ -3,17 +3,19 @@ package dto;
 public class StudentDTO {
     private String SId;
     private String SName;
+    private String Address;
     private String DOB;
     private String NIC;
-    private int TNo;
+    private String TNo;
     private String Course;
 
     public StudentDTO() {
     }
 
-    public StudentDTO(String SId, String SName, String DOB, String NIC, int TNo, String course) {
+    public StudentDTO(String SId, String SName, String address, String DOB, String NIC, String TNo, String course) {
         this.setSId(SId);
         this.setSName(SName);
+        setAddress(address);
         this.setDOB(DOB);
         this.setNIC(NIC);
         this.setTNo(TNo);
@@ -36,6 +38,14 @@ public class StudentDTO {
         this.SName = SName;
     }
 
+    public String getAddress() {
+        return Address;
+    }
+
+    public void setAddress(String address) {
+        Address = address;
+    }
+
     public String getDOB() {
         return DOB;
     }
@@ -52,11 +62,11 @@ public class StudentDTO {
         this.NIC = NIC;
     }
 
-    public int getTNo() {
+    public String getTNo() {
         return TNo;
     }
 
-    public void setTNo(int TNo) {
+    public void setTNo(String TNo) {
         this.TNo = TNo;
     }
 
@@ -70,12 +80,13 @@ public class StudentDTO {
 
     @Override
     public String toString() {
-        return "Student{" +
+        return "StudentDTO{" +
                 "SId='" + SId + '\'' +
                 ", SName='" + SName + '\'' +
+                ", Address='" + Address + '\'' +
                 ", DOB='" + DOB + '\'' +
                 ", NIC='" + NIC + '\'' +
-                ", TNo=" + TNo +
+                ", TNo='" + TNo + '\'' +
                 ", Course='" + Course + '\'' +
                 '}';
     }

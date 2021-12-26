@@ -18,7 +18,7 @@ public class StudentBOImpl implements StudentBO {
         ArrayList<StudentDTO> allStudents = new ArrayList<>();
         ArrayList<Student> all = studentDAO.getAll();
         for (Student student : all) {
-            allStudents.add(new StudentDTO(student.getSId(),student.getSName(),student.getDOB(),student.getNIC(),
+            allStudents.add(new StudentDTO(student.getSId(),student.getSName(),student.getAddress(),student.getDOB(),student.getNIC(),
                     student.getTNo(),student.getCourse()));
         }
         return allStudents;
@@ -26,13 +26,13 @@ public class StudentBOImpl implements StudentBO {
 
     @Override
     public boolean addStudent(StudentDTO studentDTO) throws SQLException, ClassNotFoundException {
-        return studentDAO.add(new Student(studentDTO.getSId(),studentDTO.getSName(),studentDTO.getDOB(),studentDTO.getNIC(),
+        return studentDAO.add(new Student(studentDTO.getSId(),studentDTO.getSName(),studentDTO.getAddress(),studentDTO.getDOB(),studentDTO.getNIC(),
                 studentDTO.getTNo(),studentDTO.getCourse()));
     }
 
     @Override
     public boolean updateStudent(StudentDTO studentDTO) throws SQLException, ClassNotFoundException {
-        return studentDAO.update(new Student(studentDTO.getSId(),studentDTO.getSName(),studentDTO.getDOB(),studentDTO.getNIC(),
+        return studentDAO.update(new Student(studentDTO.getSId(),studentDTO.getSName(),studentDTO.getAddress(),studentDTO.getDOB(),studentDTO.getNIC(),
                 studentDTO.getTNo(),studentDTO.getCourse()));
     }
 

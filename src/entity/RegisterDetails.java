@@ -1,35 +1,55 @@
 package entity;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import java.time.LocalDate;
 
+@Entity
 public class RegisterDetails {
-    private String SId;
-    private String CId;
+
+    @Id
+    @GeneratedValue
+    private int RegId;
+    @ManyToOne
+    private Student student;
+    @ManyToOne
+    private Course course;
     private LocalDate RegDate;
 
     public RegisterDetails() {
     }
 
-    public RegisterDetails(String SId, String CId, LocalDate regDate) {
-        this.setSId(SId);
-        this.setCId(CId);
+    public RegisterDetails(int regId, Student student, Course course, LocalDate regDate) {
+        setRegId(regId);
+        this.setStudent(student);
+        this.setCourse(course);
         setRegDate(regDate);
     }
 
-    public String getSId() {
-        return SId;
+    public int getRegId() {
+        return RegId;
     }
 
-    public void setSId(String SId) {
-        this.SId = SId;
+    public void setRegId(int regId) {
+        RegId = regId;
     }
 
-    public String getCId() {
-        return CId;
+    public Student getStudent() {
+        return student;
     }
 
-    public void setCId(String CId) {
-        this.CId = CId;
+    public void setStudent(Student student) {
+        this.student = student;
+    }
+
+    public Course getCourse() {
+        return course;
+    }
+
+    public void setCourse(Course course) {
+        this.course = course;
     }
 
     public LocalDate getRegDate() {
@@ -43,8 +63,9 @@ public class RegisterDetails {
     @Override
     public String toString() {
         return "RegisterDetails{" +
-                "SId='" + SId + '\'' +
-                ", CId='" + CId + '\'' +
+                "RegId=" + RegId +
+                ", student=" + student +
+                ", course=" + course +
                 ", RegDate=" + RegDate +
                 '}';
     }

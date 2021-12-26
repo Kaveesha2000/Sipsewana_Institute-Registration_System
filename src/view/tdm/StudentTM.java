@@ -1,23 +1,30 @@
 package view.tdm;
 
-public class StudentTM {
+public class StudentTM implements Comparable<StudentTM>{
     private String SId;
     private String SName;
+    private String Address;
     private String DOB;
     private String NIC;
-    private int TNo;
+    private String TNo;
     private String Course;
 
     public StudentTM() {
     }
 
-    public StudentTM(String SId, String SName, String DOB, String NIC, int TNo, String course) {
+    public StudentTM(String SId, String SName, String address, String DOB, String NIC, String TNo, String course) {
         this.setSId(SId);
         this.setSName(SName);
+        setAddress(address);
         this.setDOB(DOB);
         this.setNIC(NIC);
         this.setTNo(TNo);
         setCourse(course);
+    }
+
+    @Override
+    public int compareTo(StudentTM o) {
+        return getSId().compareTo(o.getSId());
     }
 
     public String getSId() {
@@ -36,6 +43,14 @@ public class StudentTM {
         this.SName = SName;
     }
 
+    public String getAddress() {
+        return Address;
+    }
+
+    public void setAddress(String address) {
+        Address = address;
+    }
+
     public String getDOB() {
         return DOB;
     }
@@ -52,11 +67,11 @@ public class StudentTM {
         this.NIC = NIC;
     }
 
-    public int getTNo() {
+    public String getTNo() {
         return TNo;
     }
 
-    public void setTNo(int TNo) {
+    public void setTNo(String TNo) {
         this.TNo = TNo;
     }
 
@@ -70,12 +85,13 @@ public class StudentTM {
 
     @Override
     public String toString() {
-        return "Student{" +
+        return "StudentTM{" +
                 "SId='" + SId + '\'' +
                 ", SName='" + SName + '\'' +
+                ", Address='" + Address + '\'' +
                 ", DOB='" + DOB + '\'' +
                 ", NIC='" + NIC + '\'' +
-                ", TNo=" + TNo +
+                ", TNo='" + TNo + '\'' +
                 ", Course='" + Course + '\'' +
                 '}';
     }

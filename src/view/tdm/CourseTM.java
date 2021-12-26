@@ -1,6 +1,6 @@
 package view.tdm;
 
-public class CourseTM {
+public class CourseTM implements Comparable<CourseTM> {
     private String CId;
     private String CName;
     private String Duration;
@@ -56,5 +56,10 @@ public class CourseTM {
                 ", Duration='" + Duration + '\'' +
                 ", Fee=" + Fee +
                 '}';
+    }
+
+    @Override
+    public int compareTo(CourseTM o) {
+        return CId.compareTo(o.getCId());
     }
 }

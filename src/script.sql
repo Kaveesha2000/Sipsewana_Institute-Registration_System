@@ -7,9 +7,10 @@ DROP TABLE IF EXISTS Student;
 CREATE TABLE IF NOT EXISTS Student(
     SId VARCHAR (6) NOT NULL PRIMARY KEY ,
     SName VARCHAR (25) ,
+    Address VARCHAR (40) ,
     DOB VARCHAR (15) ,
     NIC VARCHAR (20) ,
-    TNo INT (20) ,
+    TNo VARCHAR (20) ,
     Course VARCHAR (25)
 );
 

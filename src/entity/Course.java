@@ -1,10 +1,22 @@
 package entity;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import java.util.ArrayList;
+import java.util.List;
+
+@Entity
 public class Course {
+    @Id
     private String CId;
     private String CName;
     private String Duration;
     private double Fee;
+
+
+    @OneToMany(mappedBy = "course")
+    List<RegisterDetails> ordersList=new ArrayList<>();
 
     public Course() {
     }
