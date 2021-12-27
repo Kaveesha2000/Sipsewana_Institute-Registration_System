@@ -33,4 +33,11 @@ public class DashBoardFormController {
         Stage window = (Stage) dashBoardContext.getScene().getWindow();
         window.setScene(new Scene(load));
     }
+
+    public void moveToRegisterFormOnActrion(ActionEvent actionEvent) throws IOException {
+        URL resource = getClass().getResource("../view/RegisterDetailsForm.fxml");
+        Parent load = FXMLLoader.load(resource);
+        Stage window = (Stage) dashBoardContext.getScene().getWindow();
+        window.setScene(new Scene(load));
+    }
 }

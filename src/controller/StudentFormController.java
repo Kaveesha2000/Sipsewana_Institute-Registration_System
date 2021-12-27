@@ -33,7 +33,6 @@ public class StudentFormController {
     public JFXTextField txtNIC;
     public JFXTextField txtPhoneNo;
     public TableView<StudentTM> tblStudent;
-    public JFXComboBox<String> cmbCourse;
     public JFXTextField txtSearchBar;
     public TableColumn colRegNo;
     public TableColumn colName;
@@ -41,7 +40,6 @@ public class StudentFormController {
     public TableColumn colDOB;
     public TableColumn colNIC;
     public TableColumn colPhoneNo;
-    public TableColumn colCourse;
 
     private final StudentBO studentBO = (StudentBO) BOFactory.getBOFactory().getBO(BOFactory.BoTypes.STUDENT);
 
@@ -56,7 +54,6 @@ public class StudentFormController {
         colDOB.setCellValueFactory(new PropertyValueFactory<>("DOB"));
         colNIC.setCellValueFactory(new PropertyValueFactory<>("NIC"));
         colPhoneNo.setCellValueFactory(new PropertyValueFactory<>("TNo"));
-        colCourse.setCellValueFactory(new PropertyValueFactory<>("Course"));
 
         loadAllStudents();
         //btnSave.setDisable(true);
@@ -69,7 +66,6 @@ public class StudentFormController {
                 txtDOB.setText(newValue.getDOB());
                 txtNIC.setText(newValue.getNIC());
                 txtPhoneNo.setText(newValue.getTNo());
-                cmbCourse.setValue(newValue.getCourse());
                 lblSId.setDisable(true);
                 btnSave.setDisable(true);
             }
@@ -82,7 +78,7 @@ public class StudentFormController {
             ArrayList<StudentDTO> allStudents = studentBO.getAllStudents();
             for (StudentDTO student : allStudents) {
                 tblStudent.getItems().add(new StudentTM(student.getSId(),student.getSName(),student.getAddress(),student.getDOB(),
-                        student.getNIC(),student.getTNo(),student.getCourse()));
+                        student.getNIC(),student.getTNo()));
             }
         } catch (SQLException e) {
             new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
@@ -92,7 +88,7 @@ public class StudentFormController {
     }
 
 
-    public void saveOnAction(ActionEvent actionEvent) {
+    public void saveOnAction(ActionEvent actionEvent) throws IOException {
 
         String id=lblSId.getText();
         String name=txtSName.getText();
@@ -100,7 +96,6 @@ public class StudentFormController {
         String dob=txtDOB.getText();
         String nic=txtNIC.getText();
         String phoneNo= txtPhoneNo.getText();
-        String course=cmbCourse.getValue();
 
         try {
             if (existStudent(id)) {
@@ -108,18 +103,28 @@ public class StudentFormController {
             }
             else{
                 new Alert(Alert.AlertType.CONFIRMATION,  "Saved...!").show();
+
                 clear();
-                StudentDTO studentDTO = new StudentDTO(id, name, address, dob, nic, phoneNo, course);
+                StudentDTO studentDTO = new StudentDTO(id, name, address, dob, nic, phoneNo);
                 studentBO.addStudent(studentDTO);
-                tblStudent.getItems().add(new StudentTM(id, name, address, dob, nic, phoneNo, course));
+                tblStudent.getItems().add(new StudentTM(id, name, address, dob, nic, phoneNo));
                 lblSId.setText(generateNewId());
+                //========================================================
+                FXMLLoader loader =new FXMLLoader(getClass().getResource("../view/RegisterDetailsForm.fxml"));
+                Parent parent =loader.load();
+                RegisterDetailsFormController controller =loader.getController();
+                controller.getStudent(studentDTO);
+                studentContext.getChildren().clear();
+                studentContext.getChildren().add(parent);
+                //========================================================
             }
 
         } catch (SQLException e) {
-            new Alert(Alert.AlertType.ERROR, "Failed to save the customer " + e.getMessage()).show();
+            new Alert(Alert.AlertType.ERROR, "Failed to save the student " + e.getMessage()).show();
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
+
     }
 
     boolean existStudent(String id) throws SQLException, ClassNotFoundException {
@@ -134,7 +139,6 @@ public class StudentFormController {
         String dob=txtDOB.getText();
         String nic=txtNIC.getText();
         String phoneNo= txtPhoneNo.getText();
-        String course=cmbCourse.getValue();
 
 
         try {
@@ -144,7 +148,7 @@ public class StudentFormController {
             else {
                 new Alert(Alert.AlertType.CONFIRMATION, "Updated...!").show();
                 clear();
-                StudentDTO studentDTO = new StudentDTO(id, name, address, dob, nic, phoneNo, course);
+                StudentDTO studentDTO = new StudentDTO(id, name, address, dob, nic, phoneNo);
                 studentBO.updateStudent(studentDTO);
                 lblSId.setText(generateNewId());
                 btnSave.setDisable(false);
@@ -161,7 +165,6 @@ public class StudentFormController {
         selectedStudent.setDOB(dob);
         selectedStudent.setNIC(nic);
         selectedStudent.setTNo(phoneNo);
-        selectedStudent.setCourse(course);
         tblStudent.refresh();
     }
 
@@ -225,7 +228,6 @@ public class StudentFormController {
         txtDOB.clear();
         txtNIC.clear();
         txtPhoneNo.clear();
-        cmbCourse.getSelectionModel().clearSelection();
     }
 
 }

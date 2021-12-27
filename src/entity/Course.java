@@ -16,6 +16,7 @@ public class Course {
 
 
     @OneToMany(mappedBy = "course")
+    private
     List<RegisterDetails> ordersList=new ArrayList<>();
 
     public Course() {
@@ -26,6 +27,14 @@ public class Course {
         this.setCName(CName);
         setDuration(duration);
         setFee(fee);
+    }
+
+    public Course(String CId, String CName, String duration, double fee, List<RegisterDetails> ordersList) {
+        this.setCId(CId);
+        this.setCName(CName);
+        setDuration(duration);
+        setFee(fee);
+        this.setOrdersList(ordersList);
     }
 
     public String getCId() {
@@ -60,6 +69,14 @@ public class Course {
         Fee = fee;
     }
 
+    public List<RegisterDetails> getOrdersList() {
+        return ordersList;
+    }
+
+    public void setOrdersList(List<RegisterDetails> ordersList) {
+        this.ordersList = ordersList;
+    }
+
     @Override
     public String toString() {
         return "Course{" +
@@ -67,6 +84,7 @@ public class Course {
                 ", CName='" + CName + '\'' +
                 ", Duration='" + Duration + '\'' +
                 ", Fee=" + Fee +
+                ", ordersList=" + ordersList +
                 '}';
     }
 }

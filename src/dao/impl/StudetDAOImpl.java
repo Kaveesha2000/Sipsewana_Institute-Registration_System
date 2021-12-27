@@ -91,4 +91,17 @@ public class StudetDAOImpl implements StudentDAO {
         }
         return "S001";
     }
+
+    public String getStudentName(String id) throws SQLException, ClassNotFoundException {
+        Session session = FactoryConfiguration.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
+        Query query = session.createQuery("SELECT SName FROM Student WHERE SId=:id");
+        String id1 = (String) query.setParameter("id", id).uniqueResult();
+        if (id1!=null){
+            return id1;
+        }
+        transaction.commit();
+        session.close();
+        return null;
+    }
 }

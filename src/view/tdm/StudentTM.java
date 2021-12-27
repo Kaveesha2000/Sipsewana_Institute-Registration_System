@@ -7,19 +7,17 @@ public class StudentTM implements Comparable<StudentTM>{
     private String DOB;
     private String NIC;
     private String TNo;
-    private String Course;
 
     public StudentTM() {
     }
 
-    public StudentTM(String SId, String SName, String address, String DOB, String NIC, String TNo, String course) {
+    public StudentTM(String SId, String SName, String address, String DOB, String NIC, String TNo) {
         this.setSId(SId);
         this.setSName(SName);
         setAddress(address);
         this.setDOB(DOB);
         this.setNIC(NIC);
         this.setTNo(TNo);
-        setCourse(course);
     }
 
     @Override
@@ -75,14 +73,6 @@ public class StudentTM implements Comparable<StudentTM>{
         this.TNo = TNo;
     }
 
-    public String getCourse() {
-        return Course;
-    }
-
-    public void setCourse(String course) {
-        Course = course;
-    }
-
     @Override
     public String toString() {
         return "StudentTM{" +
@@ -92,7 +82,6 @@ public class StudentTM implements Comparable<StudentTM>{
                 ", DOB='" + DOB + '\'' +
                 ", NIC='" + NIC + '\'' +
                 ", TNo='" + TNo + '\'' +
-                ", Course='" + Course + '\'' +
                 '}';
     }
 }

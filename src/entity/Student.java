@@ -15,7 +15,6 @@ public class Student {
     private String DOB;
     private String NIC;
     private String TNo;
-    private String Course;
 
     @OneToMany(mappedBy = "student")
     private
@@ -24,24 +23,22 @@ public class Student {
     public Student() {
     }
 
-    public Student(String SId, String SName, String address, String DOB, String NIC, String TNo, String course) {
+    public Student(String SId, String SName, String address, String DOB, String NIC, String TNo) {
         this.setSId(SId);
         this.setSName(SName);
         setAddress(address);
         this.setDOB(DOB);
         this.setNIC(NIC);
         this.setTNo(TNo);
-        setCourse(course);
     }
 
-    public Student(String SId, String SName, String address, String DOB, String NIC, String TNo, String course, List<RegisterDetails> registerDetails) {
+    public Student(String SId, String SName, String address, String DOB, String NIC, String TNo, List<RegisterDetails> registerDetails) {
         this.setSId(SId);
         this.setSName(SName);
         setAddress(address);
         this.setDOB(DOB);
         this.setNIC(NIC);
         this.setTNo(TNo);
-        setCourse(course);
         this.setRegisterDetails(registerDetails);
     }
 
@@ -93,19 +90,24 @@ public class Student {
         this.TNo = TNo;
     }
 
-    public String getCourse() {
-        return Course;
-    }
-
-    public void setCourse(String course) {
-        Course = course;
-    }
-
     public List<RegisterDetails> getRegisterDetails() {
         return registerDetails;
     }
 
     public void setRegisterDetails(List<RegisterDetails> registerDetails) {
         this.registerDetails = registerDetails;
+    }
+
+    @Override
+    public String toString() {
+        return "Student{" +
+                "SId='" + SId + '\'' +
+                ", SName='" + SName + '\'' +
+                ", Address='" + Address + '\'' +
+                ", DOB='" + DOB + '\'' +
+                ", NIC='" + NIC + '\'' +
+                ", TNo='" + TNo + '\'' +
+                ", registerDetails=" + registerDetails +
+                '}';
     }
 }
