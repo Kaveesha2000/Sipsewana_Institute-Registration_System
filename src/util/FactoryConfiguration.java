@@ -1,7 +1,7 @@
 package util;
 
 import entity.Course;
-import entity.RegisterDetails;
+import entity.Register;
 import entity.Student;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -45,7 +45,7 @@ public class FactoryConfiguration {
             e.printStackTrace();
         }
 
-        configuration.addAnnotatedClass(Course.class).addAnnotatedClass(Student.class).addAnnotatedClass(RegisterDetails.class);
+        configuration.addAnnotatedClass(Course.class).addAnnotatedClass(Student.class).addAnnotatedClass(Register.class);
         sessionFactory = configuration.setProperties(properties).buildSessionFactory();
     }
 

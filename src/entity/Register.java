@@ -1,17 +1,15 @@
 package entity;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import java.time.LocalDate;
 
 @Entity
-public class RegisterDetails {
+public class Register {
 
     @Id
-    @GeneratedValue
-    private int RegId;
+    private String RegId;
     private LocalDate RegDate;
 
     @ManyToOne
@@ -19,21 +17,21 @@ public class RegisterDetails {
     @ManyToOne
     private Course course;
 
-    public RegisterDetails() {
+    public Register() {
     }
 
-    public RegisterDetails(int regId, LocalDate regDate, Student student, Course course) {
+    public Register(String regId, LocalDate regDate, Student student, Course course) {
         setRegId(regId);
         setRegDate(regDate);
         this.setStudent(student);
         this.setCourse(course);
     }
 
-    public int getRegId() {
+    public String getRegId() {
         return RegId;
     }
 
-    public void setRegId(int regId) {
+    public void setRegId(String regId) {
         RegId = regId;
     }
 
@@ -59,15 +57,5 @@ public class RegisterDetails {
 
     public void setCourse(Course course) {
         this.course = course;
-    }
-
-    @Override
-    public String toString() {
-        return "RegisterDetails{" +
-                "RegId=" + RegId +
-                ", RegDate=" + RegDate +
-                ", student=" + student +
-                ", course=" + course +
-                '}';
     }
 }

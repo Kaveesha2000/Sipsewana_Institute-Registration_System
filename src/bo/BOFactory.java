@@ -1,7 +1,7 @@
 package bo;
 
 import bo.impl.CourseBOImpl;
-import bo.impl.RegisterDetailsBOImpl;
+import bo.impl.RegisterBOImpl;
 import bo.impl.StudentBOImpl;
 
 public class BOFactory {
@@ -24,7 +24,7 @@ public class BOFactory {
             case COURSE:
                 return new CourseBOImpl();
             case REGISTERDETAILS:
-                return new RegisterDetailsBOImpl();
+                return new RegisterBOImpl();
             default:
                 return null;
         }

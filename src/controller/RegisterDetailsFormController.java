@@ -1,30 +1,34 @@
 package controller;
 
-import bo.impl.StudentBOImpl;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
 import dao.impl.CourseDAOImpl;
 import dao.impl.StudetDAOImpl;
 import dto.StudentDTO;
 import entity.Course;
-import entity.Student;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
+import view.tdm.RegisterTM;
 
+import java.io.IOException;
+import java.net.URL;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 
 public class RegisterDetailsFormController {
     public AnchorPane registrationDetailContext;
-    public TableView tblRegistrationDetails;
+    public TableView<RegisterTM> tblRegistrationDetails;
     public TableColumn colSId;
     public TableColumn colSName;
     public TableColumn colCId;
@@ -86,7 +90,11 @@ public class RegisterDetailsFormController {
         cmbCourse.getItems().addAll(courses);
     }
 
-    public void moveToHome(MouseEvent mouseEvent) {
+    public void moveToHome(MouseEvent mouseEvent) throws IOException {
+        URL resource = getClass().getResource("../view/DashBoardForm.fxml");
+        Parent load = FXMLLoader.load(resource);
+        Stage window = (Stage) registrationDetailContext.getScene().getWindow();
+        window.setScene(new Scene(load));
     }
 
     public void searchOnAction(ActionEvent actionEvent) {

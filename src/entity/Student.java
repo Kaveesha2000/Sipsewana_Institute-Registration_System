@@ -3,7 +3,6 @@ package entity;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -17,7 +16,7 @@ public class Student {
     private String TNo;
 
     @OneToMany(mappedBy = "student")
-    private List<RegisterDetails> studentList;
+    private List<Register> studentList;
 
     public Student() {
     }
@@ -31,7 +30,7 @@ public class Student {
         this.setTNo(TNo);
     }
 
-    public Student(String SId, String SName, String address, String DOB, String NIC, String TNo, List<RegisterDetails> studentList) {
+    public Student(String SId, String SName, String address, String DOB, String NIC, String TNo, List<Register> studentList) {
         this.setSId(SId);
         this.setSName(SName);
         setAddress(address);
@@ -89,11 +88,11 @@ public class Student {
         this.TNo = TNo;
     }
 
-    public List<RegisterDetails> getStudentList() {
+    public List<Register> getStudentList() {
         return studentList;
     }
 
-    public void setStudentList(List<RegisterDetails> studentList) {
+    public void setStudentList(List<Register> studentList) {
         this.studentList = studentList;
     }
 

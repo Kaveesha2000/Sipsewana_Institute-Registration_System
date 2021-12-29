@@ -1,16 +1,16 @@
-package dto;
+package view.tdm;
 
 import java.time.LocalDate;
 
-public class RegisterDetailsDTO {
+public class RegisterTM {
     private String SId;
     private String CId;
     private LocalDate RegDate;
 
-    public RegisterDetailsDTO() {
+    public RegisterTM() {
     }
 
-    public RegisterDetailsDTO(String SId, String CId, LocalDate regDate) {
+    public RegisterTM(String SId, String CId, LocalDate regDate) {
         this.setSId(SId);
         this.setCId(CId);
         setRegDate(regDate);
@@ -48,4 +48,5 @@ public class RegisterDetailsDTO {
                 ", RegDate=" + RegDate +
                 '}';
     }
+
 }

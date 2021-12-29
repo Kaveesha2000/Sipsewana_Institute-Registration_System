@@ -1,19 +1,29 @@
-package view.tdm;
+package dto;
 
 import java.time.LocalDate;
 
-public class RegisterDetailsTM {
+public class RegisterDTO {
+    private String RegId;
     private String SId;
     private String CId;
     private LocalDate RegDate;
 
-    public RegisterDetailsTM() {
+    public RegisterDTO() {
     }
 
-    public RegisterDetailsTM(String SId, String CId, LocalDate regDate) {
+    public RegisterDTO(String regId, String SId, String CId, LocalDate regDate) {
+        setRegId(regId);
         this.setSId(SId);
         this.setCId(CId);
         setRegDate(regDate);
+    }
+
+    public String getRegId() {
+        return RegId;
+    }
+
+    public void setRegId(String regId) {
+        RegId = regId;
     }
 
     public String getSId() {
@@ -39,14 +49,4 @@ public class RegisterDetailsTM {
     public void setRegDate(LocalDate regDate) {
         RegDate = regDate;
     }
-
-    @Override
-    public String toString() {
-        return "RegisterDetails{" +
-                "SId='" + SId + '\'' +
-                ", CId='" + CId + '\'' +
-                ", RegDate=" + RegDate +
-                '}';
-    }
-
 }

@@ -16,7 +16,7 @@ public class Course {
 
 
     @OneToMany(mappedBy = "course")
-    private List<RegisterDetails> courseDetails=new ArrayList<>();
+    private List<Register> courseDetails=new ArrayList<>();
 
     public Course() {
     }
@@ -28,7 +28,7 @@ public class Course {
         this.setFee(fee);
     }
 
-    public Course(String CId, String CName, String duration, double fee, List<RegisterDetails> courseDetails) {
+    public Course(String CId, String CName, String duration, double fee, List<Register> courseDetails) {
         this.CId = CId;
         this.CName = CName;
         Duration = duration;
@@ -68,11 +68,11 @@ public class Course {
         Fee = fee;
     }
 
-    public List<RegisterDetails> getCourseDetails() {
+    public List<Register> getCourseDetails() {
         return courseDetails;
     }
 
-    public void setCourseDetails(List<RegisterDetails> courseDetails) {
+    public void setCourseDetails(List<Register> courseDetails) {
         this.courseDetails = courseDetails;
     }
 
