@@ -17,7 +17,8 @@ public class RegisterDetailsDAOImpl implements RegisterDetailDAO {
         session.save(registerDetail);
         transaction.commit();
         session.close();
-        return true;    }
+        return true;
+    }
 
     @Override
     public boolean delete(String s) throws SQLException, ClassNotFoundException {

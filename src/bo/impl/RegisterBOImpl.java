@@ -7,6 +7,12 @@ import dao.custom.QueryDAO;
 import dao.custom.RegisterDAO;
 import dao.custom.StudentDAO;
 import dto.RegisterDTO;
+import entity.Course;
+import entity.Register;
+import entity.Student;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+import util.FactoryConfiguration;
 
 
 import java.sql.SQLException;
@@ -21,26 +27,18 @@ public class RegisterBOImpl implements RegisterBO {
 
     @Override
     public boolean registerDetails(RegisterDTO dto) throws SQLException, ClassNotFoundException {
-        /*Session session = FactoryConfiguration.getInstance().getSession();
+        Session session = FactoryConfiguration.getInstance().getSession();
         Transaction transaction = session.beginTransaction();
         Student student = session.get(Student.class, dto.getSId());
         Course course = session.get(Course.class, dto.getCId());
 
         Register register = new Register(dto.getRegId(),dto.getRegDate(),student,course);
-        Register register1 =null;
-        Course course1=null;
+       //RegisterDetail registerDetail =null;
 
-        for (RegisterDTO detail : dto.get()) {
-            item = session.get(Item.class, detail.getItemCode());
-            orderDetailDTO = new OrderDetails(order,item,detail.getOrderQty(),detail.getDiscount());
-            int remainingQty = item.getQtyOnHand() - detail.getOrderQty();
-            item.setQtyOnHand(remainingQty);
-        }
-        session.save(order);
-        session.save(orderDetailDTO);
-        session.update(item);
+        session.save(register);
+        //session.save(registerDetail);
         transaction.commit();
-        session.close();*/
+        session.close();
         return true;
     }
 

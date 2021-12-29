@@ -1,9 +1,12 @@
 package controller;
 
+import bo.BOFactory;
+import bo.custom.RegisterBO;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
 import dao.impl.CourseDAOImpl;
 import dao.impl.StudetDAOImpl;
+import dto.RegisterDTO;
 import dto.StudentDTO;
 import entity.Course;
 import javafx.beans.value.ChangeListener;
@@ -12,6 +15,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -24,6 +28,8 @@ import view.tdm.RegisterTM;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
 
 public class RegisterDetailsFormController {
@@ -45,6 +51,8 @@ public class RegisterDetailsFormController {
     public JFXTextField txtDuration;
 
     StudentDTO newStudent;
+
+    private final RegisterBO registerBO = (RegisterBO) BOFactory.getBOFactory().getBO(BOFactory.BoTypes.REGISTERDETAILS);
 
     public void initialize(){
         try {
@@ -101,6 +109,14 @@ public class RegisterDetailsFormController {
     }
 
     public void registerOnAction(ActionEvent actionEvent) {
+        boolean b= saveRegister(lblRegId.getText(),txtSId.getText(),txtCourseId.getText(),LocalDate.now());
+
+        if (b) {
+            new Alert(Alert.AlertType.INFORMATION, "Register has been done successfully").show();
+        } else {
+            new Alert(Alert.AlertType.ERROR, "Register has not been done successfully").show();
+        }
+
     }
 
     public void keyReleasedOnAction(KeyEvent keyEvent) {
@@ -122,4 +138,18 @@ public class RegisterDetailsFormController {
         }
     }
 
+
+    //=========================================
+    public boolean saveRegister(String regId,String sId, String cId, LocalDate date) {
+        try {
+            RegisterDTO registerDTO = new RegisterDTO(regId,sId,cId,date);
+            return registerBO.registerDetails(registerDTO);
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
 }
