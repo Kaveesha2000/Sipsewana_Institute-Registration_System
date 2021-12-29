@@ -1,6 +1,8 @@
 package dto;
 
-public class StudentDTO {
+import java.io.Serializable;
+
+public class StudentDTO implements Serializable {
     private String SId;
     private String SName;
     private String Address;
