@@ -18,7 +18,7 @@
       </Label>
       <AnchorPane layoutY="50.0" prefHeight="450.0" prefWidth="250.0" style="-fx-background-color: #8695b1;">
          <children>
-            <JFXButton layoutY="70.0" onAction="#moveToStudentFormOnAction" prefHeight="50.0" prefWidth="250.0" text="Student" textFill="#0b194d">
+            <JFXButton layoutX="2.0" layoutY="17.0" onAction="#moveToStudentFormOnAction" prefHeight="50.0" prefWidth="250.0" text="Student" textFill="#0b194d">
                <font>
                   <Font name="Bodoni MT Black" size="20.0" />
                </font>
@@ -26,7 +26,7 @@
                   <Insets top="10.0" />
                </padding>
             </JFXButton>
-            <JFXButton layoutY="120.0" onAction="#moveToCourseFormOnAction" prefHeight="50.0" prefWidth="250.0" text="Course" textFill="#0b194d">
+            <JFXButton layoutX="2.0" layoutY="67.0" onAction="#moveToCourseFormOnAction" prefHeight="50.0" prefWidth="250.0" text="Course" textFill="#0b194d">
                <font>
                   <Font name="Bodoni MT Black" size="20.0" />
                </font>
@@ -34,7 +34,7 @@
                   <Insets bottom="20.0" top="10.0" />
                </padding>
             </JFXButton>
-            <JFXButton layoutX="-1.0" layoutY="174.0" onAction="#logOutOnAction" prefHeight="50.0" prefWidth="250.0" text="Log Out" textFill="#a82020">
+            <JFXButton layoutX="1.0" layoutY="158.0" onAction="#logOutOnAction" prefHeight="50.0" prefWidth="250.0" text="Log Out" textFill="#a82020">
                <font>
                   <Font name="Bodoni MT Black" size="20.0" />
                </font>
@@ -47,6 +47,14 @@
                   <Image url="@assets/logo.jpeg" />
                </image>
             </ImageView>
+            <JFXButton layoutX="1.0" layoutY="112.0" onAction="#moveToRegisterFormOnActrion" prefHeight="50.0" prefWidth="250.0" text="Register" textFill="#0b194d">
+               <font>
+                  <Font name="Bodoni MT Black" size="20.0" />
+               </font>
+               <padding>
+                  <Insets bottom="20.0" top="10.0" />
+               </padding>
+            </JFXButton>
          </children>
       </AnchorPane>
       <AnchorPane layoutX="356.0" layoutY="149.0" prefHeight="125.0" prefWidth="250.0" style="-fx-background-color: #8695b1;" styleClass="dashBoardDetail-pane" stylesheets="@assets/css/styles.css">

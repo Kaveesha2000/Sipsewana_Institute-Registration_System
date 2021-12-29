@@ -17,8 +17,7 @@ public class Student {
     private String TNo;
 
     @OneToMany(mappedBy = "student")
-    private
-    List<RegisterDetails> registerDetails=new ArrayList<>();
+    private List<RegisterDetails> studentList;
 
     public Student() {
     }
@@ -26,20 +25,20 @@ public class Student {
     public Student(String SId, String SName, String address, String DOB, String NIC, String TNo) {
         this.setSId(SId);
         this.setSName(SName);
-        setAddress(address);
+        this.setAddress(address);
         this.setDOB(DOB);
         this.setNIC(NIC);
         this.setTNo(TNo);
     }
 
-    public Student(String SId, String SName, String address, String DOB, String NIC, String TNo, List<RegisterDetails> registerDetails) {
+    public Student(String SId, String SName, String address, String DOB, String NIC, String TNo, List<RegisterDetails> studentList) {
         this.setSId(SId);
         this.setSName(SName);
         setAddress(address);
         this.setDOB(DOB);
         this.setNIC(NIC);
         this.setTNo(TNo);
-        this.setRegisterDetails(registerDetails);
+        this.setStudentList(studentList);
     }
 
     public String getSId() {
@@ -90,12 +89,12 @@ public class Student {
         this.TNo = TNo;
     }
 
-    public List<RegisterDetails> getRegisterDetails() {
-        return registerDetails;
+    public List<RegisterDetails> getStudentList() {
+        return studentList;
     }
 
-    public void setRegisterDetails(List<RegisterDetails> registerDetails) {
-        this.registerDetails = registerDetails;
+    public void setStudentList(List<RegisterDetails> studentList) {
+        this.studentList = studentList;
     }
 
     @Override
@@ -107,7 +106,6 @@ public class Student {
                 ", DOB='" + DOB + '\'' +
                 ", NIC='" + NIC + '\'' +
                 ", TNo='" + TNo + '\'' +
-                ", registerDetails=" + registerDetails +
                 '}';
     }
 }

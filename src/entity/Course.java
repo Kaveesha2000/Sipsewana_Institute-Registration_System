@@ -16,8 +16,7 @@ public class Course {
 
 
     @OneToMany(mappedBy = "course")
-    private
-    List<RegisterDetails> ordersList=new ArrayList<>();
+    private List<RegisterDetails> courseDetails=new ArrayList<>();
 
     public Course() {
     }
@@ -25,16 +24,16 @@ public class Course {
     public Course(String CId, String CName, String duration, double fee) {
         this.setCId(CId);
         this.setCName(CName);
-        setDuration(duration);
-        setFee(fee);
+        this.setDuration(duration);
+        this.setFee(fee);
     }
 
-    public Course(String CId, String CName, String duration, double fee, List<RegisterDetails> ordersList) {
-        this.setCId(CId);
-        this.setCName(CName);
-        setDuration(duration);
-        setFee(fee);
-        this.setOrdersList(ordersList);
+    public Course(String CId, String CName, String duration, double fee, List<RegisterDetails> courseDetails) {
+        this.CId = CId;
+        this.CName = CName;
+        Duration = duration;
+        Fee = fee;
+        this.courseDetails = courseDetails;
     }
 
     public String getCId() {
@@ -69,12 +68,12 @@ public class Course {
         Fee = fee;
     }
 
-    public List<RegisterDetails> getOrdersList() {
-        return ordersList;
+    public List<RegisterDetails> getCourseDetails() {
+        return courseDetails;
     }
 
-    public void setOrdersList(List<RegisterDetails> ordersList) {
-        this.ordersList = ordersList;
+    public void setCourseDetails(List<RegisterDetails> courseDetails) {
+        this.courseDetails = courseDetails;
     }
 
     @Override
@@ -84,7 +83,6 @@ public class Course {
                 ", CName='" + CName + '\'' +
                 ", Duration='" + Duration + '\'' +
                 ", Fee=" + Fee +
-                ", ordersList=" + ordersList +
                 '}';
     }
 }

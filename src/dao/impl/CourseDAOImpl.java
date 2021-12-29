@@ -8,7 +8,6 @@ import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 import util.FactoryConfiguration;
 
-import java.io.Serializable;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -28,7 +27,8 @@ public class CourseDAOImpl implements CourseDAO {
     public boolean delete(String s) throws SQLException, ClassNotFoundException {
         Session session = FactoryConfiguration.getInstance().getSession();
         Transaction transaction = session.beginTransaction();
-        session.delete(s);
+        Course course = session.get(Course.class, s);
+        session.delete(course);
         transaction.commit();
         session.close();
         return true;

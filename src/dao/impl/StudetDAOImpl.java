@@ -25,7 +25,8 @@ public class StudetDAOImpl implements StudentDAO {
     public boolean delete(String s) throws SQLException, ClassNotFoundException {
         Session session = FactoryConfiguration.getInstance().getSession();
         Transaction transaction = session.beginTransaction();
-        session.delete(s);
+        Student student = session.get(Student.class, s);
+        session.delete(student);
         transaction.commit();
         session.close();
         return true;

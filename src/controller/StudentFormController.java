@@ -87,7 +87,6 @@ public class StudentFormController {
         }
     }
 
-
     public void saveOnAction(ActionEvent actionEvent) throws IOException {
 
         String id=lblSId.getText();

@@ -12,20 +12,21 @@ public class RegisterDetails {
     @Id
     @GeneratedValue
     private int RegId;
+    private LocalDate RegDate;
+
     @ManyToOne
     private Student student;
     @ManyToOne
     private Course course;
-    private LocalDate RegDate;
 
     public RegisterDetails() {
     }
 
-    public RegisterDetails(int regId, Student student, Course course, LocalDate regDate) {
+    public RegisterDetails(int regId, LocalDate regDate, Student student, Course course) {
         setRegId(regId);
+        setRegDate(regDate);
         this.setStudent(student);
         this.setCourse(course);
-        setRegDate(regDate);
     }
 
     public int getRegId() {
@@ -34,6 +35,14 @@ public class RegisterDetails {
 
     public void setRegId(int regId) {
         RegId = regId;
+    }
+
+    public LocalDate getRegDate() {
+        return RegDate;
+    }
+
+    public void setRegDate(LocalDate regDate) {
+        RegDate = regDate;
     }
 
     public Student getStudent() {
@@ -52,21 +61,13 @@ public class RegisterDetails {
         this.course = course;
     }
 
-    public LocalDate getRegDate() {
-        return RegDate;
-    }
-
-    public void setRegDate(LocalDate regDate) {
-        RegDate = regDate;
-    }
-
     @Override
     public String toString() {
         return "RegisterDetails{" +
                 "RegId=" + RegId +
+                ", RegDate=" + RegDate +
                 ", student=" + student +
                 ", course=" + course +
-                ", RegDate=" + RegDate +
                 '}';
     }
 }
