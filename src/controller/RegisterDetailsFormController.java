@@ -23,18 +23,22 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import view.tdm.RegisterDetailTM;
 import view.tdm.RegisterTM;
+import view.tdm.StudentTM;
 
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class RegisterDetailsFormController {
     public AnchorPane registrationDetailContext;
-    public TableView<RegisterTM> tblRegistrationDetails;
+    public TableView<RegisterDetailTM> tblRegistrationDetails;
     public TableColumn colSId;
     public TableColumn colSName;
     public TableColumn colCId;
@@ -55,6 +59,10 @@ public class RegisterDetailsFormController {
     private final RegisterBO registerBO = (RegisterBO) BOFactory.getBOFactory().getBO(BOFactory.BoTypes.REGISTERDETAILS);
 
     public void initialize(){
+
+        lblRegId.setText(generateNewId());
+        lblRegId.setDisable(true);
+
         try {
             loadCourseDetails();
         } catch (SQLException throwables) {
@@ -151,5 +159,30 @@ public class RegisterDetailsFormController {
             e.printStackTrace();
         }
         return false;
+    }
+
+    private String generateNewId() {
+        try {
+            return registerBO.generateNewID();
+        } catch (SQLException e) {
+            new Alert(Alert.AlertType.ERROR, "Failed to generate a new id " + e.getMessage()).show();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
+
+        if (tblRegistrationDetails.getItems().isEmpty()) {
+            return "R001";
+        } else {
+            String id = getLastDetailId();
+            int newDetailId = Integer.parseInt(id.replace("R", "")) + 1;
+            return String.format("R%03d", newDetailId);
+        }
+    }
+
+    private String getLastDetailId() {
+        List<RegisterDetailTM> tempDetailList = new ArrayList<>(tblRegistrationDetails.getItems());
+        Collections.sort(tempDetailList);
+        return tempDetailList.get(tempDetailList.size() - 1).getSId();
     }
 }

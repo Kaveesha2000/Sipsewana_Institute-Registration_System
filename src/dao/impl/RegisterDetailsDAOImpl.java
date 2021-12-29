@@ -1,7 +1,7 @@
 package dao.impl;
 
 import dao.custom.RegisterDetailDAO;
-import entity.RegisterDetail;
+import entity.Register;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import util.FactoryConfiguration;
@@ -11,7 +11,7 @@ import java.util.ArrayList;
 
 public class RegisterDetailsDAOImpl implements RegisterDetailDAO {
     @Override
-    public boolean add(RegisterDetail registerDetail) throws SQLException, ClassNotFoundException {
+    public boolean add(Register registerDetail) throws SQLException, ClassNotFoundException {
         Session session = FactoryConfiguration.getInstance().getSession();
         Transaction transaction = session.beginTransaction();
         session.save(registerDetail);
@@ -26,17 +26,17 @@ public class RegisterDetailsDAOImpl implements RegisterDetailDAO {
     }
 
     @Override
-    public boolean update(RegisterDetail registerDetail) throws SQLException, ClassNotFoundException {
+    public boolean update(Register registerDetail) throws SQLException, ClassNotFoundException {
         throw new UnsupportedOperationException("Not Supported Yet");
     }
 
     @Override
-    public RegisterDetail search(String s) throws SQLException, ClassNotFoundException {
+    public Register search(String s) throws SQLException, ClassNotFoundException {
         throw new UnsupportedOperationException("Not Supported Yet");
     }
 
     @Override
-    public ArrayList<RegisterDetail> getAll() throws SQLException, ClassNotFoundException {
+    public ArrayList<Register> getAll() throws SQLException, ClassNotFoundException {
         throw new UnsupportedOperationException("Not Supported Yet");
     }
 }

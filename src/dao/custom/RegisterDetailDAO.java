@@ -1,7 +1,7 @@
 package dao.custom;
 
 import dao.CrudDAO;
-import entity.RegisterDetail;
+import entity.Register;
 
-public interface RegisterDetailDAO extends CrudDAO<RegisterDetail,String> {
+public interface RegisterDetailDAO extends CrudDAO<Register,String> {
 }

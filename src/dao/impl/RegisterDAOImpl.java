@@ -54,7 +54,7 @@ public class RegisterDAOImpl implements RegisterDAO {
     public String generateNewID() throws SQLException, ClassNotFoundException {
         Session session = FactoryConfiguration.getInstance().getSession();
         Transaction transaction = session.beginTransaction();
-        Query query = session.createSQLQuery("SELECT RegId FROM RegisterDetails ORDER BY RegId DESC LIMIT 1");
+        Query query = session.createSQLQuery("SELECT RegId FROM Register ORDER BY RegId DESC LIMIT 1");
         String s = (String) query.uniqueResult();
         transaction.commit();
         session.close();

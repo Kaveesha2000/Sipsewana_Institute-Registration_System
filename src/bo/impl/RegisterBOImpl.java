@@ -49,7 +49,7 @@ public class RegisterBOImpl implements RegisterBO {
 
     @Override
     public boolean ifExist(String id) throws SQLException, ClassNotFoundException {
-        return false;
+        return registerDAO.ifRegExist(id);
     }
 
     @Override

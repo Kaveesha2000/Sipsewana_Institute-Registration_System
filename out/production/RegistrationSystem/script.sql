@@ -10,8 +10,7 @@ CREATE TABLE IF NOT EXISTS Student(
     Address VARCHAR (40) ,
     DOB VARCHAR (15) ,
     NIC VARCHAR (20) ,
-    TNo VARCHAR (20) ,
-    Course VARCHAR (25)
+    TNo VARCHAR (20)
 );
 
 /*Course Table*/
@@ -24,8 +23,8 @@ CREATE TABLE IF NOT EXISTS Course(
 );
 
 /*Associate Table-RegisterDetails*/
-DROP TABLE IF EXISTS RegisterDetails;
-CREATE TABLE IF NOT EXISTS RegisterDetails(
+DROP TABLE IF EXISTS Register;
+CREATE TABLE IF NOT EXISTS Register(
     SId VARCHAR (6) ,
     CId VARCHAR (6) ,
     RegDate VARCHAR (20) ,
@@ -37,6 +36,6 @@ CREATE TABLE IF NOT EXISTS RegisterDetails(
 SHOW TABLES;
 DESC Student;
 DESC Course;
-DESC RegisterDetails;
+DESC Register;
 
 /*Queries*/
