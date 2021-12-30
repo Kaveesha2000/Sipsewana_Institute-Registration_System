@@ -3,7 +3,7 @@ package dto;
 import java.io.Serializable;
 import java.time.LocalDate;
 
-public class RegisterDetailDTO implements Serializable {
+public class CustomDTO implements Serializable {
     private String RegId;
     private String SId;
     private String SName;
@@ -11,10 +11,10 @@ public class RegisterDetailDTO implements Serializable {
     private String CName;
     private LocalDate RegDate;
 
-    public RegisterDetailDTO() {
+    public CustomDTO() {
     }
 
-    public RegisterDetailDTO(String regId, String SId, String SName, String CId, String CName, LocalDate regDate) {
+    public CustomDTO(String regId, String SId, String SName, String CId, String CName, LocalDate regDate) {
         setRegId(regId);
         this.setSId(SId);
         this.setSName(SName);

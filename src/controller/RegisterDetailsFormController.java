@@ -6,12 +6,10 @@ import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
 import dao.impl.CourseDAOImpl;
 import dao.impl.StudetDAOImpl;
-import dto.CourseDTO;
 import dto.RegisterDTO;
-import dto.RegisterDetailDTO;
+import dto.CustomDTO;
 import dto.StudentDTO;
 import entity.Course;
-import entity.Register;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
@@ -24,16 +22,12 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import view.tdm.CourseTM;
 import view.tdm.RegisterDetailTM;
-import view.tdm.RegisterTM;
-import view.tdm.StudentTM;
 
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.time.LocalDate;
-import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -100,8 +94,8 @@ public class RegisterDetailsFormController {
     private void loadAllDetails() {
         tblRegistrationDetails.getItems().clear();
         try {
-            ArrayList<RegisterDetailDTO> allDetails = registerBO.getAllDetails();
-             for (RegisterDetailDTO detail : allDetails) {
+            ArrayList<CustomDTO> allDetails = registerBO.getAllDetails();
+             for (CustomDTO detail : allDetails) {
                 tblRegistrationDetails.getItems().add(new RegisterDetailTM(detail.getRegId(),detail.getSId(),detail.getSName(),
                         detail.getCId(),detail.getCName(),detail.getRegDate()));
             }

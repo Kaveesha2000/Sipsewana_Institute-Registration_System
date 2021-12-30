@@ -5,8 +5,7 @@ import dao.DAOFactory;
 import dao.custom.*;
 
 import dto.RegisterDTO;
-import dto.RegisterDetailDTO;
-import dto.StudentDTO;
+import dto.CustomDTO;
 import entity.Course;
 import entity.Register;
 import entity.Student;
@@ -42,12 +41,12 @@ public class RegisterBOImpl implements RegisterBO {
     }
 
     @Override
-    public ArrayList<RegisterDetailDTO> getAllDetails() throws SQLException, ClassNotFoundException {
-        ArrayList<RegisterDetailDTO> allDetails = new ArrayList<>();
-        ArrayList<Register> all = registerDAO.getAll();
-        for (Register register : all) {
-            allDetails.add(new RegisterDetailDTO(register.getRegId(),register.getStudent().getSId(),register.getStudent().getSName(),
-                    register.getCourse().getCId(),register.getCourse().getCName(),register.getRegDate()));
+    public ArrayList<CustomDTO> getAllDetails() throws SQLException, ClassNotFoundException {
+        ArrayList<CustomDTO> allDetails = new ArrayList<>();
+        ArrayList<CustomDTO> all = queryDAO.getAll();
+        for (CustomDTO register : all) {
+            allDetails.add(new CustomDTO(register.getRegId(),register.getSId(),register.getSName(),
+                    register.getCId(),register.getCName(),register.getRegDate()));
         }
         return allDetails;
     }
