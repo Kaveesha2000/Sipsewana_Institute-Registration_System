@@ -6,7 +6,9 @@ import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
 import dao.impl.CourseDAOImpl;
 import dao.impl.StudetDAOImpl;
+import dto.CourseDTO;
 import dto.RegisterDTO;
+import dto.RegisterDetailDTO;
 import dto.StudentDTO;
 import entity.Course;
 import javafx.beans.value.ChangeListener;
@@ -19,10 +21,12 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import view.tdm.CourseTM;
 import view.tdm.RegisterDetailTM;
 import view.tdm.RegisterTM;
 import view.tdm.StudentTM;
@@ -38,7 +42,7 @@ import java.util.List;
 
 public class RegisterDetailsFormController {
     public AnchorPane registrationDetailContext;
-    public TableView<RegisterDetailTM> tblRegistrationDetails;
+    public TableView<RegisterTM> tblRegistrationDetails;
     public TableColumn colSId;
     public TableColumn colSName;
     public TableColumn colCId;
@@ -56,12 +60,22 @@ public class RegisterDetailsFormController {
 
     StudentDTO newStudent;
 
-    private final RegisterBO registerBO = (RegisterBO) BOFactory.getBOFactory().getBO(BOFactory.BoTypes.REGISTERDETAILS);
+    private final RegisterBO registerBO = (RegisterBO) BOFactory.getBOFactory().getBO(BOFactory.BoTypes.REGISTER);
 
     public void initialize(){
 
         lblRegId.setText(generateNewId());
         lblRegId.setDisable(true);
+
+
+        colRegId.setCellValueFactory(new PropertyValueFactory<>("RegId"));
+        colSId.setCellValueFactory(new PropertyValueFactory<>("SId"));
+        colSName.setCellValueFactory(new PropertyValueFactory<>("SName"));
+        colCId.setCellValueFactory(new PropertyValueFactory<>("CId"));
+        colCName.setCellValueFactory(new PropertyValueFactory<>("CName"));
+        colRegDate.setCellValueFactory(new PropertyValueFactory<>("RegDate"));
+
+        loadAllDetails();
 
         try {
             loadCourseDetails();
@@ -79,6 +93,22 @@ public class RegisterDetailsFormController {
 
         });
     }
+
+
+    private void loadAllDetails() {
+        tblRegistrationDetails.getItems().clear();
+        try {
+            ArrayList<RegisterDTO> allDetails = registerBO.getAllDetails();
+             for (RegisterDTO detail : allDetails) {
+                tblRegistrationDetails.getItems().add(new RegisterTM(detail.getRegId(),detail.getSId(),detail.getCId(),detail.getRegDate()));
+            }
+        } catch (SQLException e) {
+            new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
+        } catch (ClassNotFoundException e) {
+            new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
+        }
+    }
+
 
     private void getCourseDetails(String newValue) {
         try {
@@ -181,7 +211,7 @@ public class RegisterDetailsFormController {
     }
 
     private String getLastDetailId() {
-        List<RegisterDetailTM> tempDetailList = new ArrayList<>(tblRegistrationDetails.getItems());
+        List<RegisterTM> tempDetailList = new ArrayList<>(tblRegistrationDetails.getItems());
         Collections.sort(tempDetailList);
         return tempDetailList.get(tempDetailList.size() - 1).getSId();
     }

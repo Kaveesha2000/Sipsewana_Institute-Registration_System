@@ -1,17 +1,26 @@
 package dto;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 
 public class RegisterDetailDTO implements Serializable {
     private String RegId;
+    private String SId;
+    private String SName;
     private String CId;
+    private String CName;
+    private LocalDate RegDate;
 
     public RegisterDetailDTO() {
     }
 
-    public RegisterDetailDTO(String regId, String CId) {
+    public RegisterDetailDTO(String regId, String SId, String SName, String CId, String CName, LocalDate regDate) {
         setRegId(regId);
+        this.setSId(SId);
+        this.setSName(SName);
         this.setCId(CId);
+        this.setCName(CName);
+        setRegDate(regDate);
     }
 
     public String getRegId() {
@@ -22,6 +31,22 @@ public class RegisterDetailDTO implements Serializable {
         RegId = regId;
     }
 
+    public String getSId() {
+        return SId;
+    }
+
+    public void setSId(String SId) {
+        this.SId = SId;
+    }
+
+    public String getSName() {
+        return SName;
+    }
+
+    public void setSName(String SName) {
+        this.SName = SName;
+    }
+
     public String getCId() {
         return CId;
     }
@@ -30,11 +55,19 @@ public class RegisterDetailDTO implements Serializable {
         this.CId = CId;
     }
 
-    @Override
-    public String toString() {
-        return "RegisterDetailDTO{" +
-                "RegId='" + RegId + '\'' +
-                ", CId='" + CId + '\'' +
-                '}';
+    public String getCName() {
+        return CName;
+    }
+
+    public void setCName(String CName) {
+        this.CName = CName;
+    }
+
+    public LocalDate getRegDate() {
+        return RegDate;
+    }
+
+    public void setRegDate(LocalDate regDate) {
+        RegDate = regDate;
     }
 }

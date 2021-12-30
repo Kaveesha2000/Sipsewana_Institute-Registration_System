@@ -24,7 +24,7 @@ public class DAOFactory {
                 return new StudetDAOImpl();
             case COURSE:
                 return new CourseDAOImpl();
-            case REGISTERDETAILS:
+            case REGISTER:
                 return new RegisterDAOImpl();
             case QUERYDAO:
                 return new QueryDAOImpl();
@@ -34,6 +34,6 @@ public class DAOFactory {
     }
 
     public enum DAOTypes {
-        STUDENT, COURSE, REGISTERDETAILS, QUERYDAO
+        STUDENT, COURSE, REGISTER, QUERYDAO
     }
 }

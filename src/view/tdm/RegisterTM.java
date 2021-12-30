@@ -2,7 +2,8 @@ package view.tdm;
 
 import java.time.LocalDate;
 
-public class RegisterTM {
+public class RegisterTM implements Comparable<RegisterTM>{
+    private String RegId;
     private String SId;
     private String CId;
     private LocalDate RegDate;
@@ -10,10 +11,19 @@ public class RegisterTM {
     public RegisterTM() {
     }
 
-    public RegisterTM(String SId, String CId, LocalDate regDate) {
+    public RegisterTM(String regId, String SId, String CId, LocalDate regDate) {
+        setRegId(regId);
         this.setSId(SId);
         this.setCId(CId);
         setRegDate(regDate);
+    }
+
+    public String getRegId() {
+        return RegId;
+    }
+
+    public void setRegId(String regId) {
+        RegId = regId;
     }
 
     public String getSId() {
@@ -41,12 +51,7 @@ public class RegisterTM {
     }
 
     @Override
-    public String toString() {
-        return "RegisterDetails{" +
-                "SId='" + SId + '\'' +
-                ", CId='" + CId + '\'' +
-                ", RegDate=" + RegDate +
-                '}';
+    public int compareTo(RegisterTM o) {
+        return getRegId().compareTo(o.getRegId());
     }
-
 }

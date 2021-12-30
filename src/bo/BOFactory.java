@@ -23,7 +23,7 @@ public class BOFactory {
                 return new StudentBOImpl();
             case COURSE:
                 return new CourseBOImpl();
-            case REGISTERDETAILS:
+            case REGISTER:
                 return new RegisterBOImpl();
             default:
                 return null;
@@ -31,6 +31,6 @@ public class BOFactory {
     }
 
     public enum BoTypes {
-        STUDENT, COURSE, REGISTERDETAILS
+        STUDENT, COURSE, REGISTER
     }
 }

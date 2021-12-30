@@ -58,4 +58,14 @@ public class Register {
     public void setCourse(Course course) {
         this.course = course;
     }
+
+    @Override
+    public String toString() {
+        return "Register{" +
+                "RegId='" + RegId + '\'' +
+                ", RegDate=" + RegDate +
+                ", student=" + student +
+                ", course=" + course +
+                '}';
+    }
 }

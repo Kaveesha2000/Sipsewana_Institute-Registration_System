@@ -13,7 +13,12 @@ import java.util.ArrayList;
 public class RegisterDAOImpl implements RegisterDAO {
     @Override
     public boolean add(Register register) throws SQLException, ClassNotFoundException {
-        return false;
+        Session session = FactoryConfiguration.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
+        session.save(register);
+        transaction.commit();
+        session.close();
+        return true;
     }
 
     @Override
@@ -33,7 +38,14 @@ public class RegisterDAOImpl implements RegisterDAO {
 
     @Override
     public ArrayList<Register> getAll() throws SQLException, ClassNotFoundException {
-        return null;
+        ArrayList<Register> allDetails = new ArrayList();
+        Session session = FactoryConfiguration.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
+        Query query = session.createQuery("FROM Register");
+        allDetails = (ArrayList<Register>) query.list();
+        transaction.commit();
+        session.close();
+        return allDetails;
     }
 
     @Override
