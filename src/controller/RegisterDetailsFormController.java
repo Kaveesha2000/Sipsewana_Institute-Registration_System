@@ -11,6 +11,7 @@ import dto.RegisterDTO;
 import dto.RegisterDetailDTO;
 import dto.StudentDTO;
 import entity.Course;
+import entity.Register;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
@@ -42,7 +43,7 @@ import java.util.List;
 
 public class RegisterDetailsFormController {
     public AnchorPane registrationDetailContext;
-    public TableView<RegisterTM> tblRegistrationDetails;
+    public TableView<RegisterDetailTM> tblRegistrationDetails;
     public TableColumn colSId;
     public TableColumn colSName;
     public TableColumn colCId;
@@ -73,7 +74,7 @@ public class RegisterDetailsFormController {
         colSName.setCellValueFactory(new PropertyValueFactory<>("SName"));
         colCId.setCellValueFactory(new PropertyValueFactory<>("CId"));
         colCName.setCellValueFactory(new PropertyValueFactory<>("CName"));
-        colRegDate.setCellValueFactory(new PropertyValueFactory<>("RegDate"));
+        colRegDate.setCellValueFactory(new PropertyValueFactory<>("Date"));
 
         loadAllDetails();
 
@@ -98,9 +99,10 @@ public class RegisterDetailsFormController {
     private void loadAllDetails() {
         tblRegistrationDetails.getItems().clear();
         try {
-            ArrayList<RegisterDTO> allDetails = registerBO.getAllDetails();
-             for (RegisterDTO detail : allDetails) {
-                tblRegistrationDetails.getItems().add(new RegisterTM(detail.getRegId(),detail.getSId(),detail.getCId(),detail.getRegDate()));
+            ArrayList<RegisterDetailDTO> allDetails = registerBO.getAllDetails();
+             for (RegisterDetailDTO detail : allDetails) {
+                tblRegistrationDetails.getItems().add(new RegisterDetailTM(detail.getRegId(),detail.getSId(),detail.getSName(),
+                        detail.getCId(),detail.getCName(),detail.getRegDate()));
             }
         } catch (SQLException e) {
             new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
@@ -211,7 +213,7 @@ public class RegisterDetailsFormController {
     }
 
     private String getLastDetailId() {
-        List<RegisterTM> tempDetailList = new ArrayList<>(tblRegistrationDetails.getItems());
+        List<RegisterDetailTM> tempDetailList = new ArrayList<>(tblRegistrationDetails.getItems());
         Collections.sort(tempDetailList);
         return tempDetailList.get(tempDetailList.size() - 1).getSId();
     }

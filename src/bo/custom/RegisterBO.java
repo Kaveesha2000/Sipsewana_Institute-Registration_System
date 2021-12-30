@@ -11,7 +11,7 @@ public interface RegisterBO extends SuperBO {
 
     boolean registerDetails(RegisterDTO dto) throws SQLException, ClassNotFoundException;
 
-    ArrayList<RegisterDTO> getAllDetails() throws SQLException, ClassNotFoundException;
+    ArrayList<RegisterDetailDTO> getAllDetails() throws SQLException, ClassNotFoundException;
 
     boolean ifExist(String id) throws SQLException, ClassNotFoundException;
 
