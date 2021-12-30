@@ -149,11 +149,20 @@ public class RegisterDetailsFormController {
     public void searchOnAction(ActionEvent actionEvent) {
     }
 
-    public void registerOnAction(ActionEvent actionEvent) {
+    public void registerOnAction(ActionEvent actionEvent) throws SQLException, ClassNotFoundException {
         boolean b= saveRegister(lblRegId.getText(),txtSId.getText(),txtCourseId.getText(),LocalDate.now());
+
+        String id=lblRegId.getText();
+        String Sid=txtSId.getText();
+        String SName=txtSName.getText();
+        String CId=txtCourseId.getText();
+        String CName=cmbCourse.getValue();
+        LocalDate date=LocalDate.now();
 
         if (b) {
             new Alert(Alert.AlertType.INFORMATION, "Register has been done successfully").show();
+            tblRegistrationDetails.getItems().add(new RegisterDetailTM(id, Sid, SName, CId, CName, date));
+            lblRegId.setText(generateNewId());
         } else {
             new Alert(Alert.AlertType.ERROR, "Register has not been done successfully").show();
         }

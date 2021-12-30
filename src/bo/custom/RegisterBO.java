@@ -3,6 +3,7 @@ package bo.custom;
 import bo.SuperBO;
 import dto.RegisterDTO;
 import dto.RegisterDetailDTO;
+import dto.StudentDTO;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
