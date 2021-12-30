@@ -18,10 +18,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
@@ -58,6 +55,8 @@ public class RegisterDetailsFormController {
     public JFXComboBox<String> cmbCourse;
     public JFXTextField txtFee;
     public JFXTextField txtDuration;
+    public CheckBox checkBox;
+    public Button regBtn;
 
     StudentDTO newStudent;
 
@@ -68,6 +67,7 @@ public class RegisterDetailsFormController {
         lblRegId.setText(generateNewId());
         lblRegId.setDisable(true);
 
+        regBtn.setDisable(true);
 
         colRegId.setCellValueFactory(new PropertyValueFactory<>("RegId"));
         colSId.setCellValueFactory(new PropertyValueFactory<>("SId"));
@@ -93,6 +93,7 @@ public class RegisterDetailsFormController {
             }
 
         });
+
     }
 
 
@@ -216,5 +217,12 @@ public class RegisterDetailsFormController {
         List<RegisterDetailTM> tempDetailList = new ArrayList<>(tblRegistrationDetails.getItems());
         Collections.sort(tempDetailList);
         return tempDetailList.get(tempDetailList.size() - 1).getSId();
+    }
+
+    public void paidOnAction(ActionEvent actionEvent) {
+        boolean isSelect= checkBox.isSelected();
+        if (isSelect) {
+            regBtn.setDisable(false);
+        }
     }
 }
