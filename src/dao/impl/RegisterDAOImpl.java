@@ -1,6 +1,7 @@
 package dao.impl;
 
 import dao.custom.RegisterDAO;
+import dto.CustomDTO;
 import entity.Register;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -9,18 +10,11 @@ import util.FactoryConfiguration;
 import view.tdm.RegisterDetailTM;
 
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
 public class RegisterDAOImpl implements RegisterDAO {
-    public static List<RegisterDetailTM> searchDetail(String s) {
-        Session session = FactoryConfiguration.getInstance().getSession();
-        Transaction transaction = session.beginTransaction();
-        List<RegisterDetailTM> programs = session.createQuery("SELECT r.RegId,s.SId,s.SName,c.CId,c.CName,r.RegDate FROM Register r INNER JOIN Student s ON r.student=s.SId INNER JOIN Course c ON r.course=c.CId WHERE c.CId LIKE '%" + s + "%' or c.CName LIKE '%" + s + "%'").list();
-        transaction.commit();
-        session.close();
-        return programs;
-    }
 
     @Override
     public boolean add(Register register) throws SQLException, ClassNotFoundException {

@@ -5,6 +5,7 @@ import bo.custom.RegisterBO;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
 import dao.impl.CourseDAOImpl;
+import dao.impl.QueryDAOImpl;
 import dao.impl.RegisterDAOImpl;
 import dao.impl.StudetDAOImpl;
 import dto.RegisterDTO;
@@ -73,7 +74,7 @@ public class RegisterDetailsFormController {
         colSName.setCellValueFactory(new PropertyValueFactory<>("SName"));
         colCId.setCellValueFactory(new PropertyValueFactory<>("CId"));
         colCName.setCellValueFactory(new PropertyValueFactory<>("CName"));
-        colRegDate.setCellValueFactory(new PropertyValueFactory<>("Date"));
+        colRegDate.setCellValueFactory(new PropertyValueFactory<>("RegDate"));
 
         loadAllDetails();
 
@@ -240,14 +241,20 @@ public class RegisterDetailsFormController {
     }
 
     public void searchStore(String value) {
+
         ObservableList<RegisterDetailTM> obList = FXCollections.observableArrayList();
 
-        List<RegisterDetailTM> detail = RegisterDAOImpl.searchDetail(value);
+        List<CustomDTO> detail = registerBO.searchDetail(value);
 
-        detail.forEach(e->{
+
+        /*detail.forEach(e->{
             obList.add(
-                    new RegisterDetailTM(e.getRegId(),e.getSId(),e.getSName(),e.getCId(),e.getCName(),e.getDate()));
-        });
+                    new CustomDTO(e.getRegId(),e.getSId(),e.getSName(),e.getCId(),e.getCName(),e.getRegDate()));
+        });*/
+        for (CustomDTO temp:detail) {
+            obList.add(new RegisterDetailTM(temp.getRegId(),temp.getSId(),temp.getSName(),temp.getCId(),temp.getCName(),temp.getRegDate()));
+        }
+
         tblRegistrationDetails.setItems(obList);
     }
 

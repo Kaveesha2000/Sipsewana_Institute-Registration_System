@@ -6,6 +6,7 @@ import dto.CustomDTO;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
 public interface RegisterBO extends SuperBO {
 
@@ -16,4 +17,6 @@ public interface RegisterBO extends SuperBO {
     boolean ifExist(String id) throws SQLException, ClassNotFoundException;
 
     String generateNewID() throws SQLException, ClassNotFoundException;
+
+    List<CustomDTO> searchDetail(String value);
 }

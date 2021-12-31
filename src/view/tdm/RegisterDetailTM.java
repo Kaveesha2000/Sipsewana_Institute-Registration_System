@@ -8,18 +8,23 @@ public class RegisterDetailTM implements Comparable<RegisterDetailTM>{
     private String SName;
     private String CId;
     private String CName;
-    private LocalDate Date;
+    private LocalDate RegDate;
 
     public RegisterDetailTM() {
     }
 
-    public RegisterDetailTM(String regId, String SId, String SName, String CId, String CName, LocalDate date) {
+    public RegisterDetailTM(String regId, String SId, String SName, String CId, String CName, LocalDate regDate) {
         setRegId(regId);
         this.setSId(SId);
         this.setSName(SName);
         this.setCId(CId);
         this.setCName(CName);
-        setDate(date);
+        setRegDate(regDate);
+    }
+
+    @Override
+    public int compareTo(RegisterDetailTM o) {
+        return getRegId().compareTo(o.getRegId());
     }
 
     public String getRegId() {
@@ -62,28 +67,11 @@ public class RegisterDetailTM implements Comparable<RegisterDetailTM>{
         this.CName = CName;
     }
 
-    public LocalDate getDate() {
-        return Date;
+    public LocalDate getRegDate() {
+        return RegDate;
     }
 
-    public void setDate(LocalDate date) {
-        Date = date;
-    }
-
-    @Override
-    public String toString() {
-        return "RegisterDetailTM{" +
-                "RegId='" + RegId + '\'' +
-                ", SId='" + SId + '\'' +
-                ", SName='" + SName + '\'' +
-                ", CId='" + CId + '\'' +
-                ", CName='" + CName + '\'' +
-                ", Date=" + Date +
-                '}';
-    }
-
-    @Override
-    public int compareTo(RegisterDetailTM o) {
-        return RegId.compareTo(o.getRegId());
+    public void setRegDate(LocalDate regDate) {
+        RegDate = regDate;
     }
 }
