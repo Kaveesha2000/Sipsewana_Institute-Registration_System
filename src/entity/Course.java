@@ -14,7 +14,6 @@ public class Course {
     private String Duration;
     private double Fee;
 
-
     @OneToMany(mappedBy = "course")
     private List<Register> courseDetails=new ArrayList<>();
 

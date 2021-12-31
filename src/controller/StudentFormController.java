@@ -87,6 +87,44 @@ public class StudentFormController {
         }
     }
 
+    private String generateNewId() {
+        try {
+            return studentBO.generateNewID();
+        } catch (SQLException e) {
+            new Alert(Alert.AlertType.ERROR, "Failed to generate a new id " + e.getMessage()).show();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
+
+        if (tblStudent.getItems().isEmpty()) {
+            return "S001";
+        } else {
+            String id = getLastStudentId();
+            int newCustomerId = Integer.parseInt(id.replace("S", "")) + 1;
+            return String.format("S%03d", newCustomerId);
+        }
+    }
+
+    private String getLastStudentId() {
+        List<StudentTM> tempStudentList = new ArrayList<>(tblStudent.getItems());
+        Collections.sort(tempStudentList);
+        return tempStudentList.get(tempStudentList.size() - 1).getSId();
+    }
+
+    private void clear() {
+        txtSName.clear();
+        txtSName.clear();
+        txtAddress.clear();
+        txtDOB.clear();
+        txtNIC.clear();
+        txtPhoneNo.clear();
+    }
+
+    boolean existStudent(String id) throws SQLException, ClassNotFoundException {
+        return studentBO.ifStudentExist(id);
+    }
+
     public void saveOnAction(ActionEvent actionEvent) throws IOException {
 
         String id=lblSId.getText();
@@ -123,11 +161,6 @@ public class StudentFormController {
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
-
-    }
-
-    boolean existStudent(String id) throws SQLException, ClassNotFoundException {
-        return studentBO.ifStudentExist(id);
     }
 
     public void updateOnAction(ActionEvent actionEvent) {
@@ -193,40 +226,6 @@ public class StudentFormController {
         Parent load = FXMLLoader.load(resource);
         Stage window = (Stage) studentContext.getScene().getWindow();
         window.setScene(new Scene(load));
-    }
-
-    private String generateNewId() {
-        try {
-            return studentBO.generateNewID();
-        } catch (SQLException e) {
-            new Alert(Alert.AlertType.ERROR, "Failed to generate a new id " + e.getMessage()).show();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-
-
-        if (tblStudent.getItems().isEmpty()) {
-            return "S001";
-        } else {
-            String id = getLastStudentId();
-            int newCustomerId = Integer.parseInt(id.replace("S", "")) + 1;
-            return String.format("S%03d", newCustomerId);
-        }
-    }
-
-    private String getLastStudentId() {
-        List<StudentTM> tempStudentList = new ArrayList<>(tblStudent.getItems());
-        Collections.sort(tempStudentList);
-        return tempStudentList.get(tempStudentList.size() - 1).getSId();
-    }
-
-    private void clear() {
-        txtSName.clear();
-        txtSName.clear();
-        txtAddress.clear();
-        txtDOB.clear();
-        txtNIC.clear();
-        txtPhoneNo.clear();
     }
 
 }

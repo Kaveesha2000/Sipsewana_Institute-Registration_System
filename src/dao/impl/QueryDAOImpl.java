@@ -2,7 +2,6 @@ package dao.impl;
 
 import dao.custom.QueryDAO;
 import dto.CustomDTO;
-import entity.Register;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;

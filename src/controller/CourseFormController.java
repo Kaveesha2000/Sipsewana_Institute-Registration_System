@@ -81,6 +81,40 @@ public class CourseFormController {
         }
     }
 
+    private String generateNewId() {
+        try {
+            return courseBO.generateNewID();
+        } catch (SQLException e) {
+            new Alert(Alert.AlertType.ERROR, "Failed to generate a new id " + e.getMessage()).show();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
+
+        if (tblCourse.getItems().isEmpty()) {
+            return "C001";
+        } else {
+            String id = getLastStudentId();
+            int newCustomerId = Integer.parseInt(id.replace("C", "")) + 1;
+            return String.format("C%03d", newCustomerId);
+        }
+    }
+
+    private String getLastStudentId() {
+        List<CourseTM> tempCourseList = new ArrayList<>(tblCourse.getItems());
+        Collections.sort(tempCourseList);
+        return tempCourseList.get(tempCourseList.size() - 1).getCId();
+    }
+
+    boolean exitsCourse(String id) throws SQLException, ClassNotFoundException {
+        return courseBO.ifCourseExist(id);
+    }
+
+    private void clear() {
+        txtCName.clear();
+        txtFee.clear();
+        txtDuration.clear();
+    }
 
     public void moveToHome(MouseEvent mouseEvent) throws IOException {
         URL resource = getClass().getResource("../view/DashBoardForm.fxml");
@@ -148,43 +182,26 @@ public class CourseFormController {
     }
 
     public void deleteOnAction(ActionEvent actionEvent) {
-    }
-
-    public void searchOnAction(ActionEvent actionEvent) {
-    }
-
-    boolean exitsCourse(String id) throws SQLException, ClassNotFoundException {
-        return courseBO.ifCourseExist(id);
-    }
-
-    private String generateNewId() {
+        String id = tblCourse.getSelectionModel().getSelectedItem().getCId();
         try {
-            return courseBO.generateNewID();
+            if (!exitsCourse(id)) {
+                new Alert(Alert.AlertType.ERROR, "There is no such course associated with the id " + id).show();
+            }else{
+                new Alert(Alert.AlertType.CONFIRMATION, "Deleted...!").show();
+                courseBO.deleteCourse(id);
+                tblCourse.getItems().remove(tblCourse.getSelectionModel().getSelectedItem());
+                tblCourse.getSelectionModel().clearSelection();
+                clear();
+                lblCId.setText(generateNewId());
+                btnSave.setDisable(false);
+            }
         } catch (SQLException e) {
-            new Alert(Alert.AlertType.ERROR, "Failed to generate a new id " + e.getMessage()).show();
+            new Alert(Alert.AlertType.ERROR, "Failed to delete the course " + id).show();
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
-
-
-        if (tblCourse.getItems().isEmpty()) {
-            return "C001";
-        } else {
-            String id = getLastStudentId();
-            int newCustomerId = Integer.parseInt(id.replace("C", "")) + 1;
-            return String.format("C%03d", newCustomerId);
-        }
     }
 
-    private String getLastStudentId() {
-        List<CourseTM> tempCourseList = new ArrayList<>(tblCourse.getItems());
-        Collections.sort(tempCourseList);
-        return tempCourseList.get(tempCourseList.size() - 1).getCId();
-    }
-
-    private void clear() {
-        txtCName.clear();
-        txtFee.clear();
-        txtDuration.clear();
+    public void searchOnAction(ActionEvent actionEvent) {
     }
 }

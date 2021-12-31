@@ -34,8 +34,8 @@
             <TableColumn fx:id="colRegDate" prefWidth="105.0" text="RegDate" />
         </columns>
       </TableView>
-      <Button layoutX="504.0" layoutY="203.0" mnemonicParsing="false" onAction="#searchOnAction" prefHeight="25.0" prefWidth="69.0" styleClass="searchBtn" stylesheets="@assets/css/styles.css" text="Search" />
-      <JFXTextField fx:id="txtSearchBar" layoutX="37.0" layoutY="203.0" prefHeight="25.0" prefWidth="452.0" styleClass="textType" stylesheets="@assets/css/styles.css" />
+      <Button layoutX="477.0" layoutY="203.0" mnemonicParsing="false" onAction="#searchOnAction" prefHeight="25.0" prefWidth="69.0" styleClass="searchBtn" stylesheets="@assets/css/styles.css" text="Search" />
+      <JFXTextField fx:id="txtSearchBar" layoutX="77.0" layoutY="203.0" prefHeight="25.0" prefWidth="390.0" styleClass="textType" stylesheets="@assets/css/styles.css" />
       <JFXTextField fx:id="txtSName" labelFloat="true" layoutX="262.0" layoutY="100.0" prefHeight="29.0" prefWidth="172.0" promptText="Student Name : " styleClass="textType" stylesheets="@assets/css/styles.css">
          <font>
             <Font name="Ubuntu" size="13.0" />
@@ -72,7 +72,7 @@
             <Font name="Ubuntu" size="13.0" />
          </font>
       </JFXTextField>
-      <Button fx:id="regBtn" layoutX="597.0" layoutY="203.0" mnemonicParsing="false" onAction="#registerOnAction" prefHeight="25.0" prefWidth="69.0" styleClass="updateBtn" stylesheets="@assets/css/styles.css" text="Register" />
+      <Button fx:id="regBtn" layoutX="555.0" layoutY="203.0" mnemonicParsing="false" onAction="#registerOnAction" prefHeight="25.0" prefWidth="69.0" styleClass="updateBtn" stylesheets="@assets/css/styles.css" text="Register" />
       <CheckBox fx:id="checkBox" layoutX="576.0" layoutY="163.0" mnemonicParsing="false" onAction="#paidOnAction" styleClass="textType" stylesheets="@assets/css/styles.css" text="Paid" />
    </children>
 </AnchorPane>

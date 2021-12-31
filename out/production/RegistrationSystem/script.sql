@@ -38,4 +38,6 @@ DESC Student;
 DESC Course;
 DESC Register;
 
-/*Queries*/
+/* Join Queries*/
+SELECT r.RegId,r.SId,r.CId,r.RegDate,s.SName,c.CName FROM Register r INNER JOIN Student s ON r.SId=s.SId INNER JOIN Course c ON r.CId=c.CId;
+
