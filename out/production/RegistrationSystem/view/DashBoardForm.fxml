@@ -18,7 +18,7 @@
       </Label>
       <AnchorPane layoutY="50.0" prefHeight="450.0" prefWidth="250.0" style="-fx-background-color: #8695b1;">
          <children>
-            <JFXButton layoutX="2.0" layoutY="17.0" onAction="#moveToStudentFormOnAction" prefHeight="50.0" prefWidth="250.0" text="Student" textFill="#0b194d">
+            <JFXButton layoutY="17.0" onAction="#moveToStudentFormOnAction" prefHeight="50.0" prefWidth="250.0" text="Student" textFill="#0b194d">
                <font>
                   <Font name="Bodoni MT Black" size="20.0" />
                </font>
@@ -97,12 +97,12 @@
             </Label>
          </children>
       </AnchorPane>
-      <Label alignment="CENTER" layoutX="546.0" layoutY="63.0" prefHeight="17.0" prefWidth="108.0" text="21-12-2021">
+      <Label fx:id="lblDate" alignment="CENTER" layoutX="546.0" layoutY="63.0" prefHeight="17.0" prefWidth="108.0" text="21-12-2021">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
       </Label>
-      <Label alignment="CENTER" layoutX="546.0" layoutY="87.0" prefHeight="17.0" prefWidth="108.0" text="06:05:22 AM">
+      <Label fx:id="lblTime" alignment="CENTER" layoutX="546.0" layoutY="87.0" prefHeight="17.0" prefWidth="108.0" text="06:05:22 AM">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
