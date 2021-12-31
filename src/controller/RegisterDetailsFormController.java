@@ -5,13 +5,17 @@ import bo.custom.RegisterBO;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
 import dao.impl.CourseDAOImpl;
+import dao.impl.RegisterDAOImpl;
 import dao.impl.StudetDAOImpl;
 import dto.RegisterDTO;
 import dto.CustomDTO;
 import dto.StudentDTO;
 import entity.Course;
+import entity.Student;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -23,6 +27,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import view.tdm.RegisterDetailTM;
+import view.tdm.StudentTM;
 
 import java.io.IOException;
 import java.net.URL;
@@ -86,6 +91,13 @@ public class RegisterDetailsFormController {
                 getCourseDetails(newValue);
             }
 
+        });
+
+        txtSearchBar.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                searchStore(newValue);
+            }
         });
 
     }
@@ -187,9 +199,6 @@ public class RegisterDetailsFormController {
         window.setScene(new Scene(load));
     }
 
-    public void searchOnAction(ActionEvent actionEvent) {
-    }
-
     public void registerOnAction(ActionEvent actionEvent) throws SQLException, ClassNotFoundException {
         boolean b= saveRegister(lblRegId.getText(),txtSId.getText(),txtCourseId.getText(),LocalDate.now());
 
@@ -226,4 +235,20 @@ public class RegisterDetailsFormController {
             regBtn.setDisable(false);
         }
     }
+
+    public void searchOnAction(ActionEvent actionEvent) {
+    }
+
+    public void searchStore(String value) {
+        ObservableList<RegisterDetailTM> obList = FXCollections.observableArrayList();
+
+        List<RegisterDetailTM> detail = RegisterDAOImpl.searchDetail(value);
+
+        detail.forEach(e->{
+            obList.add(
+                    new RegisterDetailTM(e.getRegId(),e.getSId(),e.getSName(),e.getCId(),e.getCName(),e.getDate()));
+        });
+        tblRegistrationDetails.setItems(obList);
+    }
+
 }

@@ -13,6 +13,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CourseDAOImpl implements CourseDAO {
+    public static List<Course> searchCourses(String s) {
+        Session session = FactoryConfiguration.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
+        List<Course> programs = session.createQuery("FROM Course WHERE CId LIKE '%" + s + "%' or CName LIKE '%" + s + "%'").list();
+        transaction.commit();
+        session.close();
+        return programs;
+    }
+
     @Override
     public boolean add(Course course) throws SQLException, ClassNotFoundException {
         Session session = FactoryConfiguration.getInstance().getSession();

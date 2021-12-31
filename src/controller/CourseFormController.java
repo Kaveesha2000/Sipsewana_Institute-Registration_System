@@ -2,11 +2,12 @@ package controller;
 
 import bo.BOFactory;
 import bo.custom.CourseBO;
-import bo.custom.StudentBO;
 import com.jfoenix.controls.JFXTextField;
+import dao.impl.CourseDAOImpl;
 import dto.CourseDTO;
-import dto.StudentDTO;
 import entity.Course;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -19,7 +20,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import view.tdm.CourseTM;
-import view.tdm.StudentTM;
 
 import java.io.IOException;
 import java.net.URL;
@@ -29,6 +29,7 @@ import java.util.Collections;
 import java.util.List;
 
 public class CourseFormController {
+    private final CourseBO courseBO = (CourseBO) BOFactory.getBOFactory().getBO(BOFactory.BoTypes.COURSE);
     public Button btnSave;
     public AnchorPane courseContext;
     public JFXTextField txtCName;
@@ -42,10 +43,7 @@ public class CourseFormController {
     public TableColumn colDuration;
     public TableColumn colFee;
 
-
-    private final CourseBO courseBO = (CourseBO) BOFactory.getBOFactory().getBO(BOFactory.BoTypes.COURSE);
-
-    public void initialize(){
+    public void initialize() {
 
         lblCId.setText(generateNewId());
         //lblCId.setDisable(true);
@@ -68,6 +66,13 @@ public class CourseFormController {
                 btnSave.setDisable(true);
             }
         });
+
+        txtSearchBar.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                searchCourse(newValue);
+            }
+        });
     }
 
     private void loadAllCourses() {
@@ -75,7 +80,7 @@ public class CourseFormController {
         try {
             ArrayList<CourseDTO> allCourses = courseBO.getAllCourses();
             for (CourseDTO course : allCourses) {
-                tblCourse.getItems().add(new CourseTM(course.getCId(),course.getCName(),course.getDuration(),course.getFee()));
+                tblCourse.getItems().add(new CourseTM(course.getCId(), course.getCName(), course.getDuration(), course.getFee()));
             }
         } catch (SQLException e) {
             new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
@@ -127,17 +132,16 @@ public class CourseFormController {
     }
 
     public void saveOnAction(ActionEvent actionEvent) {
-        String id=lblCId.getText();
-        String name=txtCName.getText();
-        String duration=txtDuration.getText();
-        double fee= Double.parseDouble(txtFee.getText());
+        String id = lblCId.getText();
+        String name = txtCName.getText();
+        String duration = txtDuration.getText();
+        double fee = Double.parseDouble(txtFee.getText());
 
         try {
             if (exitsCourse(id)) {
                 new Alert(Alert.AlertType.ERROR, id + " Already Exists").show();
-            }
-            else{
-                new Alert(Alert.AlertType.CONFIRMATION,  "Saved...!").show();
+            } else {
+                new Alert(Alert.AlertType.CONFIRMATION, "Saved...!").show();
 
                 clear();
                 CourseDTO courseDTO = new CourseDTO(id, name, duration, fee);
@@ -154,16 +158,15 @@ public class CourseFormController {
     }
 
     public void updateOnAction(ActionEvent actionEvent) {
-        String id=lblCId.getText();
-        String name=txtCName.getText();
-        String duration=txtDuration.getText();
-        double fee= Double.parseDouble(txtFee.getText());
+        String id = lblCId.getText();
+        String name = txtCName.getText();
+        String duration = txtDuration.getText();
+        double fee = Double.parseDouble(txtFee.getText());
 
         try {
             if (!exitsCourse(id)) {
-                new Alert(Alert.AlertType.ERROR, id + " There is no such course associated with the id "+id).show();
-            }
-            else {
+                new Alert(Alert.AlertType.ERROR, id + " There is no such course associated with the id " + id).show();
+            } else {
                 new Alert(Alert.AlertType.CONFIRMATION, "Updated...!").show();
                 clear();
                 CourseDTO courseDTO = new CourseDTO(id, name, duration, fee);
@@ -189,7 +192,7 @@ public class CourseFormController {
         try {
             if (!exitsCourse(id)) {
                 new Alert(Alert.AlertType.ERROR, "There is no such course associated with the id " + id).show();
-            }else{
+            } else {
                 new Alert(Alert.AlertType.CONFIRMATION, "Deleted...!").show();
                 courseBO.deleteCourse(id);
                 tblCourse.getItems().remove(tblCourse.getSelectionModel().getSelectedItem());
@@ -203,5 +206,21 @@ public class CourseFormController {
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
+    }
+
+    private void searchCourse(String newValue) {
+        ObservableList<CourseTM> obList = FXCollections.observableArrayList();
+        /* List<Student> students = Collections.singletonList(StudentDAOImpl.searchStudent(value));*/
+
+        List<Course> programs = CourseDAOImpl.searchCourses(newValue);
+
+        programs.forEach(e -> {
+            obList.add(
+                    new CourseTM(e.getCId(), e.getCName(), e.getDuration(), e.getFee()));
+        });
+        tblCourse.setItems(obList);
+    }
+
+    public void searchOnAction(ActionEvent actionEvent) {
     }
 }

@@ -4,7 +4,13 @@ import bo.BOFactory;
 import bo.custom.StudentBO;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
+import dao.impl.StudetDAOImpl;
 import dto.StudentDTO;
+import entity.Student;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -68,6 +74,13 @@ public class StudentFormController {
                 txtPhoneNo.setText(newValue.getTNo());
                 lblSId.setDisable(true);
                 btnSave.setDisable(true);
+            }
+        });
+
+        txtSearchBar.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                searchStore(newValue);
             }
         });
     }
@@ -228,4 +241,21 @@ public class StudentFormController {
         window.setScene(new Scene(load));
     }
 
+    public void searchStore(String value) {
+        ObservableList<StudentTM> obList = FXCollections.observableArrayList();
+        try {
+
+            List<Student> students = StudetDAOImpl.searchStudent(value);
+
+            students.forEach(e->{
+                obList.add(
+                        new StudentTM(e.getSId(),e.getSName(),e.getAddress(),e.getDOB(),e.getNIC(),e.getTNo()));
+            });
+            tblStudent.setItems(obList);
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
 }

@@ -7,8 +7,10 @@ import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 import util.FactoryConfiguration;
 
+import java.math.BigInteger;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
 public class StudetDAOImpl implements StudentDAO {
     @Override
@@ -106,25 +108,22 @@ public class StudetDAOImpl implements StudentDAO {
         return null;
     }
 
-    public int studentCount() throws SQLException, ClassNotFoundException {
-        /*Session session = FactoryConfiguration.getInstance().getSession();
+    public BigInteger studentCount() throws SQLException, ClassNotFoundException {
+        Session session = FactoryConfiguration.getInstance().getSession();
         Transaction transaction = session.beginTransaction();
         Query query = session.createSQLQuery("SELECT COUNT(*) FROM Student");
-        int s = (int) query.uniqueResult();
+        BigInteger bigInteger = (BigInteger) query.uniqueResult();
         transaction.commit();
         session.close();
-        return s;
-
-            int numberRow = 0;
-            PreparedStatement statement = DbConnection.getInstance().getConnection().
-                    prepareStatement("SELECT COUNT(*) FROM donor");
-            ResultSet resultSet = statement.executeQuery();
-            while (resultSet.next()){
-                numberRow = resultSet.getInt("count(*)");
-            }
-            return numberRow;*/
-        return 0;
+        return bigInteger;
     }
 
-
+    public static List<Student> searchStudent(String s) throws SQLException, ClassNotFoundException {
+        Session session = FactoryConfiguration.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
+        List<Student> student = session.createQuery("FROM Student WHERE SId LIKE '%" + s + "%' or SName LIKE '%" + s + "%'").list();
+        transaction.commit();
+        session.close();
+        return student;
+    }
 }
