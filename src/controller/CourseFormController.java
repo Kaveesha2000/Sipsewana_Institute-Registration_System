@@ -6,6 +6,9 @@ import bo.custom.StudentBO;
 import com.jfoenix.controls.JFXTextField;
 import dto.CourseDTO;
 import dto.StudentDTO;
+import entity.Course;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -200,8 +203,5 @@ public class CourseFormController {
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
-    }
-
-    public void searchOnAction(ActionEvent actionEvent) {
     }
 }

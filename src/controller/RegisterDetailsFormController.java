@@ -133,6 +133,53 @@ public class RegisterDetailsFormController {
         cmbCourse.getItems().addAll(courses);
     }
 
+    public void getStudentName(String id) throws SQLException, ClassNotFoundException {
+        try {
+            String name = new StudetDAOImpl().getStudentName(id);
+            txtSName.setText(name);
+        }catch (Exception e){
+
+        }
+    }
+
+    public boolean saveRegister(String regId,String sId, String cId, LocalDate date) {
+        try {
+            RegisterDTO registerDTO = new RegisterDTO(regId,sId,cId,date);
+            return registerBO.registerDetails(registerDTO);
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    private String generateNewId() {
+        try {
+            return registerBO.generateNewID();
+        } catch (SQLException e) {
+            new Alert(Alert.AlertType.ERROR, "Failed to generate a new id " + e.getMessage()).show();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
+
+        if (tblRegistrationDetails.getItems().isEmpty()) {
+            return "R001";
+        } else {
+            String id = getLastDetailId();
+            int newDetailId = Integer.parseInt(id.replace("R", "")) + 1;
+            return String.format("R%03d", newDetailId);
+        }
+    }
+
+    private String getLastDetailId() {
+        List<RegisterDetailTM> tempDetailList = new ArrayList<>(tblRegistrationDetails.getItems());
+        Collections.sort(tempDetailList);
+        return tempDetailList.get(tempDetailList.size() - 1).getSId();
+    }
+
     public void moveToHome(MouseEvent mouseEvent) throws IOException {
         URL resource = getClass().getResource("../view/DashBoardForm.fxml");
         Parent load = FXMLLoader.load(resource);
@@ -171,55 +218,6 @@ public class RegisterDetailsFormController {
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
-    }
-
-    public void getStudentName(String id) throws SQLException, ClassNotFoundException {
-        try {
-            String name = new StudetDAOImpl().getStudentName(id);
-            txtSName.setText(name);
-        }catch (Exception e){
-
-        }
-    }
-
-
-    //=========================================
-    public boolean saveRegister(String regId,String sId, String cId, LocalDate date) {
-        try {
-            RegisterDTO registerDTO = new RegisterDTO(regId,sId,cId,date);
-            return registerBO.registerDetails(registerDTO);
-
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-        return false;
-    }
-
-    private String generateNewId() {
-        try {
-            return registerBO.generateNewID();
-        } catch (SQLException e) {
-            new Alert(Alert.AlertType.ERROR, "Failed to generate a new id " + e.getMessage()).show();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-
-
-        if (tblRegistrationDetails.getItems().isEmpty()) {
-            return "R001";
-        } else {
-            String id = getLastDetailId();
-            int newDetailId = Integer.parseInt(id.replace("R", "")) + 1;
-            return String.format("R%03d", newDetailId);
-        }
-    }
-
-    private String getLastDetailId() {
-        List<RegisterDetailTM> tempDetailList = new ArrayList<>(tblRegistrationDetails.getItems());
-        Collections.sort(tempDetailList);
-        return tempDetailList.get(tempDetailList.size() - 1).getSId();
     }
 
     public void paidOnAction(ActionEvent actionEvent) {

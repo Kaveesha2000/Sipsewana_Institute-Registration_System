@@ -105,4 +105,26 @@ public class StudetDAOImpl implements StudentDAO {
         session.close();
         return null;
     }
+
+    public int studentCount() throws SQLException, ClassNotFoundException {
+        /*Session session = FactoryConfiguration.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
+        Query query = session.createSQLQuery("SELECT COUNT(*) FROM Student");
+        int s = (int) query.uniqueResult();
+        transaction.commit();
+        session.close();
+        return s;
+
+            int numberRow = 0;
+            PreparedStatement statement = DbConnection.getInstance().getConnection().
+                    prepareStatement("SELECT COUNT(*) FROM donor");
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()){
+                numberRow = resultSet.getInt("count(*)");
+            }
+            return numberRow;*/
+        return 0;
+    }
+
+
 }
