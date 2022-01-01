@@ -41,7 +41,7 @@ DESC Register;
 /* Join Queries*/
 SELECT r.RegId,r.SId,r.CId,r.RegDate,s.SName,c.CName FROM Register r INNER JOIN Student s ON r.SId=s.SId INNER JOIN Course c ON r.CId=c.CId;
 
-FROM C WHERE pId LIKE '%" + s + "%' or pName LIKE '%" + s + "%'
+FROM C WHERE CId LIKE '%" + s + "%' or CName LIKE '%" + s + "%'
 
 SELECT r.RegId,s.SId,s.SName,c.CId,c.CName,r.RegDate FROM Register r INNER JOIN Student s ON r.student=s.SId INNER JOIN Course c ON r.course=c.CId WHERE CId LIKE '%" + s + "%' or CName LIKE '%" + s + "%'
 SELECT r.RegId,s.SId,s.SName,c.CId,c.CName,r.RegDate FROM Register r INNER JOIN Student s ON r. student_SId=s.SId INNER JOIN Course c ON r. course_CId=c.CId WHERE CId LIKE '%C001%' or CName LIKE '%HR%'

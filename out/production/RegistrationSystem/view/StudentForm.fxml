@@ -17,17 +17,17 @@
             <Font name="System Bold" size="30.0" />
          </font>
       </Label>
-      <JFXTextField fx:id="txtSName" labelFloat="true" layoutX="30.0" layoutY="90.0" prefHeight="29.0" prefWidth="207.0" promptText="Student Name : " styleClass="textType" stylesheets="@assets/css/styles.css">
+      <JFXTextField fx:id="txtSName" labelFloat="true" layoutX="30.0" layoutY="90.0" onKeyReleased="#textFields_Key_Released" prefHeight="29.0" prefWidth="207.0" promptText="Student Name : " styleClass="textType" stylesheets="@assets/css/styles.css">
          <font>
             <Font name="Ubuntu" size="13.0" />
          </font>
       </JFXTextField>
-      <JFXTextField fx:id="txtDOB" labelFloat="true" layoutX="464.0" layoutY="90.0" prefHeight="29.0" prefWidth="207.0" promptText="Date Of Birth : " styleClass="textType" stylesheets="@assets/css/styles.css">
+      <JFXTextField fx:id="txtDOB" labelFloat="true" layoutX="464.0" layoutY="90.0" onKeyReleased="#textFields_Key_Released" prefHeight="29.0" prefWidth="207.0" promptText="Date Of Birth : " styleClass="textType" stylesheets="@assets/css/styles.css">
          <font>
             <Font name="Ubuntu" size="13.0" />
          </font>
       </JFXTextField>
-      <JFXTextField fx:id="txtAddress" labelFloat="true" layoutX="247.0" layoutY="90.0" prefHeight="29.0" prefWidth="207.0" promptText="Address : " styleClass="textType" stylesheets="@assets/css/styles.css">
+      <JFXTextField fx:id="txtAddress" labelFloat="true" layoutX="247.0" layoutY="90.0" onKeyReleased="#textFields_Key_Released" prefHeight="29.0" prefWidth="207.0" promptText="Address : " styleClass="textType" stylesheets="@assets/css/styles.css">
          <font>
             <Font name="Ubuntu" size="13.0" />
          </font>
@@ -37,12 +37,12 @@
             <Image url="@assets/home.png" />
          </image>
       </ImageView>
-      <JFXTextField fx:id="txtNIC" labelFloat="true" layoutX="31.0" layoutY="141.0" prefHeight="29.0" prefWidth="207.0" promptText="NIC : " styleClass="textType" stylesheets="@assets/css/styles.css">
+      <JFXTextField fx:id="txtNIC" labelFloat="true" layoutX="31.0" layoutY="141.0" onKeyReleased="#textFields_Key_Released" prefHeight="29.0" prefWidth="207.0" promptText="NIC : " styleClass="textType" stylesheets="@assets/css/styles.css">
          <font>
             <Font name="Ubuntu" size="13.0" />
          </font>
       </JFXTextField>
-      <JFXTextField fx:id="txtPhoneNo" labelFloat="true" layoutX="247.0" layoutY="141.0" prefHeight="29.0" prefWidth="207.0" promptText="Phone No : " styleClass="textType" stylesheets="@assets/css/styles.css">
+      <JFXTextField fx:id="txtPhoneNo" labelFloat="true" layoutX="247.0" layoutY="141.0" onKeyReleased="#textFields_Key_Released" prefHeight="29.0" prefWidth="207.0" promptText="Phone No : " styleClass="textType" stylesheets="@assets/css/styles.css">
          <font>
             <Font name="Ubuntu" size="13.0" />
          </font>
