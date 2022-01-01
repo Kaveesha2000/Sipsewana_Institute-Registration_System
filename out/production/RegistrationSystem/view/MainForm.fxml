@@ -37,8 +37,8 @@
             <Separator layoutX="56.0" layoutY="278.0" prefHeight="0.0" prefWidth="288.0" style="-fx-background-color: #032668;" />
          </children>
       </AnchorPane>
-      <JFXTextField layoutX="497.0" layoutY="263.0" prefHeight="25.0" prefWidth="184.0" />
-      <JFXPasswordField layoutX="497.0" layoutY="332.0" prefHeight="25.0" prefWidth="184.0" />
+      <JFXTextField fx:id="txtUserName" layoutX="497.0" layoutY="263.0" onAction="#goToPassword" prefHeight="25.0" prefWidth="184.0" styleClass="textType" stylesheets="@assets/css/styles.css" />
+      <JFXPasswordField fx:id="txtPassword" layoutX="497.0" layoutY="332.0" prefHeight="25.0" prefWidth="184.0" styleClass="textType" stylesheets="@assets/css/styles.css" />
       <Label layoutX="418.0" layoutY="276.0" text="USERNAME : ">
          <font>
             <Font name="System Bold" size="12.0" />
@@ -65,6 +65,6 @@
          </font>
       </Label>
       <Label layoutX="418.0" layoutY="299.0" prefHeight="17.0" prefWidth="264.0" textFill="#e41010" />
-      <Label layoutX="418.0" layoutY="370.0" prefHeight="17.0" prefWidth="264.0" textFill="#e41010" />
+      <Label fx:id="lblError" layoutX="418.0" layoutY="370.0" prefHeight="17.0" prefWidth="264.0" textFill="#e41010" />
    </children>
 </AnchorPane>
