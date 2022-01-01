@@ -17,9 +17,12 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import validation.ValidationUtil;
 import view.tdm.StudentTM;
 
 import java.io.IOException;
@@ -27,7 +30,9 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.regex.Pattern;
 
 public class StudentFormController {
     public Button btnSave;
@@ -53,6 +58,7 @@ public class StudentFormController {
 
         lblSId.setText(generateNewId());
         lblSId.setDisable(true);
+        storeValidations();
 
         colRegNo.setCellValueFactory(new PropertyValueFactory<>("SId"));
         colName.setCellValueFactory(new PropertyValueFactory<>("SName"));
@@ -62,7 +68,7 @@ public class StudentFormController {
         colPhoneNo.setCellValueFactory(new PropertyValueFactory<>("TNo"));
 
         loadAllStudents();
-        //btnSave.setDisable(true);
+        btnSave.setDisable(true);
 
         tblStudent.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue != null) {
@@ -257,5 +263,33 @@ public class StudentFormController {
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
+    }
+
+    public void textFields_Key_Released(KeyEvent keyEvent) {
+        Object response = ValidationUtil.validate(map,btnSave);
+
+        if (keyEvent.getCode() == KeyCode.ENTER) {
+            if (response instanceof TextField) {
+                TextField errorText = (TextField) response;
+                errorText.requestFocus();
+            } else if (response instanceof Boolean) {
+                //new Alert(Alert.AlertType.INFORMATION, "Aded").showAndWait();
+            }
+        }
+    }
+
+    LinkedHashMap<TextField, Pattern> map = new LinkedHashMap();
+    Pattern namePattern = Pattern.compile("^[A-z ]{3,20}$");
+    Pattern addressPattern = Pattern.compile("^[A-z0-9/ ]{6,30}$");
+    Pattern dobPattern = Pattern.compile("^\\d{4}\\-(0[1-9]|1[012])\\-(0[1-9]|[12][0-9]|3[01])$");
+    Pattern nicPattern = Pattern.compile("^[0-9]{12}|[0-9]{11}[A-Z]$");
+    Pattern phoneNoPattern = Pattern.compile("^[0-9]{3}[-]?[0-9]{7}$");
+
+    private void storeValidations() {
+        map.put(txtSName, namePattern);
+        map.put(txtAddress, addressPattern);
+        map.put(txtDOB,dobPattern);
+        map.put(txtNIC, nicPattern);
+        map.put(txtPhoneNo, phoneNoPattern);
     }
 }

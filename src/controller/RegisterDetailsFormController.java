@@ -246,11 +246,6 @@ public class RegisterDetailsFormController {
 
         List<CustomDTO> detail = registerBO.searchDetail(value);
 
-
-        /*detail.forEach(e->{
-            obList.add(
-                    new CustomDTO(e.getRegId(),e.getSId(),e.getSName(),e.getCId(),e.getCName(),e.getRegDate()));
-        });*/
         for (CustomDTO temp:detail) {
             obList.add(new RegisterDetailTM(temp.getRegId(),temp.getSId(),temp.getSName(),temp.getCId(),temp.getCName(),temp.getRegDate()));
         }
