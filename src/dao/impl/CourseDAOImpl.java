@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CourseDAOImpl implements CourseDAO {
+
     public static List<Course> searchCourses(String s) {
         Session session = FactoryConfiguration.getInstance().getSession();
         Transaction transaction = session.beginTransaction();
@@ -104,6 +105,7 @@ public class CourseDAOImpl implements CourseDAO {
         return "C001";
     }
 
+    @Override
     public List<String> getCourses() throws SQLException, ClassNotFoundException {
         ArrayList<String> allCourses = new ArrayList();
         Session session = FactoryConfiguration.getInstance().getSession();
@@ -115,6 +117,7 @@ public class CourseDAOImpl implements CourseDAO {
         return allCourses;
     }
 
+    @Override
     public Course getCourseDetails(String CName) throws SQLException, ClassNotFoundException {
         Session session = FactoryConfiguration.getInstance().getSession();
         Transaction transaction = session.beginTransaction();

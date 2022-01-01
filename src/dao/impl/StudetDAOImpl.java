@@ -95,6 +95,7 @@ public class StudetDAOImpl implements StudentDAO {
         return "S001";
     }
 
+    @Override
     public String getStudentName(String id) throws SQLException, ClassNotFoundException {
         Session session = FactoryConfiguration.getInstance().getSession();
         Transaction transaction = session.beginTransaction();
@@ -108,6 +109,7 @@ public class StudetDAOImpl implements StudentDAO {
         return null;
     }
 
+    @Override
     public BigInteger studentCount() throws SQLException, ClassNotFoundException {
         Session session = FactoryConfiguration.getInstance().getSession();
         Transaction transaction = session.beginTransaction();
