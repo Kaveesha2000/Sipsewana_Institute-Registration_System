@@ -8,6 +8,7 @@ import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 import util.FactoryConfiguration;
 
+import java.math.BigInteger;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -126,5 +127,16 @@ public class CourseDAOImpl implements CourseDAO {
         transaction.commit();
         session.close();
         return course;
+    }
+
+    @Override
+    public BigInteger courseCount() throws SQLException, ClassNotFoundException {
+        Session session = FactoryConfiguration.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
+        Query query = session.createSQLQuery("SELECT COUNT(*) FROM Course");
+        BigInteger bigInteger = (BigInteger) query.uniqueResult();
+        transaction.commit();
+        session.close();
+        return bigInteger;
     }
 }

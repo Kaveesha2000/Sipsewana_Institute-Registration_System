@@ -1,5 +1,6 @@
 package controller;
 
+import dao.impl.CourseDAOImpl;
 import dao.impl.StudetDAOImpl;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
@@ -89,6 +90,6 @@ public class DashBoardFormController {
 
     public void setCount() throws SQLException, ClassNotFoundException {
         totStudents.setText(String.valueOf(new StudetDAOImpl().studentCount()));
-        //totCourses.setText(String.valueOf(new EmployeeController().employeeCount()));
+        totCourses.setText(String.valueOf(new CourseDAOImpl().courseCount()));
     }
 }

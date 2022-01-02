@@ -3,6 +3,7 @@ package dao.custom;
 import dao.CrudDAO;
 import entity.Course;
 
+import java.math.BigInteger;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -14,4 +15,6 @@ public interface CourseDAO extends CrudDAO<Course, String> {
     List<String> getCourses() throws SQLException, ClassNotFoundException;
 
     Course getCourseDetails(String CName) throws SQLException, ClassNotFoundException;
+
+    BigInteger courseCount() throws SQLException, ClassNotFoundException;
 }
